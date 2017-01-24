@@ -1,0 +1,145 @@
+\documentclass{article}
+\author{Max Springenberg}
+\title{UB 08}
+\usepackage{ngerman}
+\usepackage{amsfonts}
+\usepackage{stmaryrd}
+\usepackage[table]{xcolor}
+\usepackage{hhline}
+\setcounter{section}{8}
+
+\begin{document}
+\maketitle
+\newpage
+%   A8.1
+\subsection 
+\\
+%   A8.1.1
+\subsubsection
+\\
+%   Begriffe
+Gruppe: Monoid = inverses Element\\
+Monoid: neutrales Element, Halbgruppe\\
+Halbgruppe: Assoziativit"at\\
+endliche Gruppe: endliche Anzahl der Elemente, neutrales Element, 
+inversees Element, Assoziativit"at\\ 
+\\
+%   Rechnung 
+$h: <G,\oplus> \times <G,\oplus> \rightarrow <G,\oplus>'x\\
+\forall a, b, c \in G. h(a) = a \oplus x =h(b) =  b \oplus x\\
+\Leftrightarrow h(a) = h(b)\\
+\Leftrightarrow a \oplus x = b \oplus x
+\Leftrightarrow a = b$\\
+
+%   A8.1.2
+\subsubsection \\ 
+{
+\rowcolors{1}{white}{gray!20}
+\begin{tabular}{|l||l|l|l|l|l|l|l|}
+        \hline
+        $\oplus$&a  &b&c&d&e&f\\
+        \hhline{|=||=|=|=|=|=|=|}
+        a       &f  &d  &e  &b  &c  &a\\
+        \hline
+        b       &e  &f  &d  &c  &a  &b\\
+        \hline
+        c       &d  &e  &f  &a  &b  &c\\
+        \hline
+        d       &c  &a  &b  &e  &f  &d\\
+        \hline
+        e       &b  &c  &a  &f  &d  &e\\
+        \hline
+        f       &a  &b  &c  &d  &e  &f\\
+        \hline
+\end{tabular}
+}
+\newpage
+
+%   A   8.2
+\subsection
+\\
+%   A8.2.1
+\subsubsection \\
+$T = \{ \lambda_a | a \in G \}\\
+\lambda_a (x) = a \oplus x\\
+<T, \circ >\\
+\forall a, b, c \in T\\
+\\
+%   1. Kriterium
+Assoziativit"at:\\
+\lambda_a \circ (\lambda_a \circ \lambda_c (x))\\
+= \lambda_a \circ (\lambda_b \circ (\lambda_c (x)))\\
+= \lambda_a (\lambda_b(\lambda_c (x)))\\
+= \lambda_a(\lambda_b(c \oplus x))\\
+= \lambda_a (b \oplus c \oplus)\\
+= (a \oplus b \oplus c \oplus x)\\
+= (a \oplus b) \circ \lambda_c (x)\\
+= (\lambda_a (b \oplus e)) \circ \lambda_c (x)\\
+= (\lambda_a \circ \lambda_b) \circ \lambda_c (x)$\\
+\\
+%   2. Kriterium
+neutrales Element:\\
+$\lambda_a \circ \lambda_e (x)\\
+= a \oplus e \oplus x\\
+= a \oplus x\\
+= e \oplus a \oplus x\\
+\lambda_e \circ \lambda_a (x)$\\
+\\
+%   3. Kriterium
+inverses Element:\\
+$\lambda_a \circ \lambda_{a^{-1}} (x) = \lambda_e (x)\\
+a \oplus a^{-1} \oplus x = e \oplus x$\\
+\\
+%   A8.2.2
+\subsubsection\\
+$h : <G, \oplus> \rightarrow <T, \circ>\\
+h(a)=\lambda_a\\
+h(a \oplus b) =^! h(a) \circ h(b)\\
+h(a \oplus b) = \lambda_{a \oplus b}(x)\\
+= a \oplus b \oplus x\\
+= \lambda_a (b \oplus x)\\
+= \lambda_a(\lambda_b(x))\\
+= \lambda_a \circ \lambda_b (x)\\
+= h(a) \circ h(b)$
+\newpage
+
+%   A8.3
+\subsection\\
+%   A8.3.1
+\subsubsection\\
+$<A, \oplus, \odot> B \subseteq A\\
+<\{a \in A | b \odot a = a \odot b, \forall b \in B\}, \oplus, \odot>$
+ist Unterring von $<A, \oplus, \odot>$\\
+\\
+Tipp:\\
+$( \forall a, b \in A : a \odot (-b) 
+= (-a) \odot b 
+= -(a \odot b) \land (-a) \odot (-b) 
+= a \odot b)\\$
+\\
+Kriterien Bez"uglich des Plusoperanden:\\
+Assoziativit"at:\\
+Aus $A' \subseteq A$ folgt, dass 
+$\forall a, c, d \in A'. a \oplus (c \oplus d) 
+= (a \oplus c) \oplus d$ gilt.\\
+\\
+neutrales Element:\\
+$b \odot  0 = 0 \odot b \Rightarrow 0 in jedem A'$ (Folie 272)\\
+\\
+inverses Element:\\
+$b \odot (-a) = -(b \odot a) = -(a \odot b) = (-a) \odot b$\\
+\\
+Kommutativit"at:\\
+$\forall a, c \in A'. a\oplus c = c \oplus a$, da $A' \subseteq A$\\
+\\
+Kriterien Bez"uglich des Maloperanden:\\
+Assoziativit"at:\\
+$\forall a, c, d \in A. a \odot (c \odot d) = (a \odot c) \odot d$, da $A' \subseteq A$\\
+\\
+%   A8.3.2
+\subsubsection\\
+Ring mit 0 = 1 sei ein Nullring!\\
+Annahme $a \in R \land a \neq 0\\
+a \odot 1 = a\ \lightning\\
+0 = 1\ m"usste\ a \odot 1 = 0$
+\end{document}

@@ -1,0 +1,95 @@
+\documentclass{article}
+\title{MafI 1 UB03}
+\setcounter{section}{3}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\begin{document}
+\maketitle
+\newpage
+\subsection{Aequivalenzrealtionen}
+\subsubsection\
+z.z.: genau dann euklidisch, wenn Aequivalenzrelation\\
+\\
+"$\Rightarrow$":\\
+Reflexivitaet ist bereits gegeben\\
+\\
+Symmetrie:\\
+$
+\forall a_1, a_2 \in A. a_1 R a_2 \Rightarrow^{!} a_2 R a_1
+a_1 R a_1(aus\ Reflexivitaet)\\
+\\
+\forall a_1, a _2 \in A(a_1 R a_2 \land a_1 R a_1) \Rightarrow a_2 R a_1\\
+damit\ a_1 R a_2 \land a_1 R a_1 \Rightarrow a_2 R a_1\\
+$
+\\
+Transitivitaet:\\
+$
+\forall a_1, a_2, a_3 \in A. a_1, a_2, a_3 \in A. a_1 R a_2 \land a_2 R a_3 \Rightarrow^{!} a_1 R a_3\\
+a_2 R a_1(aus\ Symmetrie)\\
+\forall a_1, a_2, a_3 \in A.(a_2 R a_1 \land a_2 R a_3) \Rightarrow a_1 R a_3\\
+damit\ a_1 R a_2 \land a_2 R a_3 \Rightarrow a_1 R a_3\\
+$
+\\
+"$\Leftarrow$":\\
+$
+\forall a, b, c \in A.(a R b \land a R c) \Rightarrow^{!} b R c\\
+\\
+b R a (aus\ Symmetrie)\\
+aus\ Transitivitaet:\\
+b R a \land a R c \Rightarrow b R c\\
+damit\ a R b \land a R c \Rightarrow b R c\\
+$
+\subsubsection\
+R ist keine Aequivalenzrealtion, da die Transitivitaet nicht gilt\\
+\\
+$
+\{1,2\} \cap \{2,3\} \neq \emptyset\\
+\{2,3\} \cap \{3,4\} \neq \emptyset\\
+aber\ \{1,2\} \cap \{3,4\} = \emptyset\\
+$
+\newpage
+\subsection{Aequivalenzrealtionen und Partitionen}
+\subsubsection\
+$
+\backsim_R =   
+        \{\\
+            (e,e), (f,d), (c,a), (b,f),\\
+            (a,a), (b,b), (c,c), (d,d),(f,f),   \leftarrow \ Reflexivitaet\\
+            (d,f), (a,c), (f,b),                \leftarrow \ Symmetrie\\
+            (b,d), (d,b)                       \leftarrow \ Transitivitaet\ \&\ Symmetrie\\
+        \}\\
+$
+\subsubsection\
+$M \setminus \backsim_R$ ist Partition  basieredn auf Aequivalenzklassen\\
+$
+    M \setminus \backsim_R 
+=   \{\{a, c\}, \{b, d, f\}, \{e\}\}\\
+=   \{[a]_{\backsim_R},[b]_{\backsim_R},[e]_{\backsim_R}\}\\
+$
+\subsubsection\
+$
+g(x) =  \begin{cases}
+            1, & x = a \lor x =c\\
+            2, & x = b \lor x = d \lor x = f\\
+            3, & x = e\\
+        \end{cases}\\
+$
+\newpage
+\subsection{Maechtigkeit von Mengen}
+sei $P_e(\mathbb{N})$ die Menge aller unendlichen Teilmengen von $\mathbb{N}$.\\
+z.z.: $P_e(\mathbb{N})$ abzaehlbar unendlich $\Leftrightarrow P_e(\mathbb{N}) \cong \mathbb{N}$\\
+\\
+Es reicht, den Satz von Cantor, Bernstein und Schroeder nachzuweisen.\\
+$
+P_e(\mathbb{N}) \leqq^! \mathbb{N}, \mathbb{N} \leqq^! P_e(\mathbb{N})\\
+\\
+P_e(\mathbb{N}) \leqq \mathbb{N}:\\
+f : \mathbb{N} \rightarrow P_e(\mathbb{N})\\
+f(n) := \{n\},\ offensichtlich\ injektiv\\
+\\
+\mathbb{N} \leqq  P_e(\mathbb{N}):\\
+g: P_e(\mathbb{N}) \rightarrow \mathbb{N}\\
+g(X) := \sum_{n \in X}{2^n},\ nicht\ surjektiv\\
+$
+\end{document}

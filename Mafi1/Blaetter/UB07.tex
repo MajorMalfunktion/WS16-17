@@ -1,0 +1,187 @@
+\documentclass{article}
+\title{MafI 1 UB07}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\setcounter{section}{7}
+\begin{document}
+\maketitle
+\newpage
+
+\subsection{Strukturtafeln und Gruppen}
+\subsubsection\
+\begin{tabular}{ccccccc}
+        $+_6$   &0&1&2&3&4&5\\
+        \hline
+        0       &0&1&2&3&4&5\\
+        1       &1&2&3&4&5&0\\
+        2       &2&3&4&5&0&1\\
+        3       &3&4&5&0&1&2\\
+        4       &4&5&0&1&2&3\\
+        5       &5&0&1&2&3&4\\
+\end{tabular}\\
+\\
+\begin{tabular}{ccccccc}
+        $*_6$   &0&1&2&3&4&5\\
+        \hline
+        0       &0&0&0&0&0&0\\
+        1       &0&1&2&3&4&5\\
+        2       &0&2&4&0&2&4\\
+        3       &0&3&0&3&0&3\\
+        4       &0&4&2&0&4&2\\
+        5       &0&5&4&3&2&1\\
+\end{tabular}\\
+\subsubsection\
+z.z.:\\
+$(\mathbb{Z}_6, +_6)$ soll Gruppe sein\\
+\\
+Assoziativitaet\\
+offensichtlich, da normale Addition assoziativ ist.\\
+\\
+neutr. Element:\\
+offensichtlich 0, da 0 das neutr. Element der normalen Addition ist.\\
+\\
+inv. Element:\\
+$
+\forall x \in \mathbb{Z}_6 \exists x' \in \mathbb{Z}_6.
+x +_6 x' = 0 \Rightarrow x' = 6 - x\\
+$
+inv. Element ex. auch, damit ist $(\mathbb{Z}_6, +_6)$ eine Gruppe\\
+\newpage
+\subsection{Permutationen, Zyklenschreibweise}
+\subsubsection\
+$
+\sigma_1 = (123456)\\
+\sigma_2 = (13652)(4)\\
+\sigma_3 = (126)(354)\\
+$
+\subsubsection\
+$
+    \sigma_1 \circ \sigma_2 \circ \sigma_3 
+=   \begin{pmatrix}
+            1&2&3&4&5&6\\
+            2&6&3&1&5&4\\
+    \end{pmatrix}
+=   (1264)(3)(5)\\
+$
+\newpage
+\subsection{Gruppe und Gruppenhomorphismus}
+\subsubsection\
+$
+    (a \oplus b)^{-1}
+=   e \oplus (a \oplus b)^{-1}
+=   e \oplus b \oplus b^{-1} \oplus (a \oplus b)^{-1}
+=   a \oplus a^{-1} \oplus b \oplus b^{-1} \oplus (a \oplus b)^{-1}
+=   a^{-1} \oplus b^{-1}\\
+$
+\subsubsection\
+"$\Rightarrow$" h ist injektiv:\\
+$
+\Rightarrow $jedes Element hat max. ein Urbild$\\
+\Rightarrow Kern(h)$ist max. einelementig$\\
+    h(e) \oplus' h(e)
+=   h(e \oplus e)
+=   h(e)
+=   h(e) \oplus e'\\
+    h(e)
+=   e'\\
+$
+\\
+"$\Leftarrow$" $Kern(h) = \{e\} \Rightarrow$ h ist injektiv:\\
+Kontrraposition:\\
+h nicht injektiv $\Rightarrow Kern(h) \neq \{e\}$\\
+z.z.:\\
+$
+\exists a \in G.
+h(a) = e'\\
+$somit $a \in Kern(h) \land a \neq e\\
+$
+\\
+sei h nicht injektiv:\\
+$
+\exists x, x' \in G. 
+x \neq x'.
+h(x) = h(x')\\
+\\
+$So ist:$\\
+    e' 
+=   h(x) \oplus' h(x)^{-1}
+=   h(x) \oplus' h(x')^{-1}
+=   h(x) \oplus' h(x'^{-1})
+=   h(x \oplus x'^{-1})
+\neq e' \lightning\\
+$
+\newpage
+\subsection{Untergruppenverband}
+$
+V = \{V | V \subseteq G, V \cup G\}\\
+\leq \subseteq V \times V\\
+\\
+                A \leq B 
+\Leftrightarrow A \cup G$ von $B
+\Leftrightarrow A \subseteq B\\
+\\
+(i)\\
+z.z.:\\
+<V,\leq>$ ist Verband$\\
+\\
+$partielle Ordnung:\\
+ist reflexiv, da $A \leq A$ durch $\forall A \in V. A = A$ gilt\\
+\\
+antisymmetrisch:\\
+$
+A, B \in V.A \leq B \land B \leq A\\
+\Rightarrow A \subseteq B \land B \subseteq A\\
+\Rightarrow A = B\\
+$
+\\
+transitiv:\\
+$
+A, B ,C \in V.A \leq B \land B \leq C\\
+\Rightarrow A \subseteq B \land B \subseteq C\\
+\Rightarrow A \subseteq C
+\Rightarrow A \leq C\\
+$
+\\
+\\
+(ii)\\
+z.z.:\\
+$<V,\leq>$ ist vollstaendiger Verband$\\
+\\
+U \subseteq V\\
+\\
+inf(U) = \bigcap_{X \in U} X\\
+\forall X \in U. \bigcap_{X \in U} X \subseteq X$ damit untere Schranke$\\
+\\
+\forall X \subseteq U \exists K. K \subseteq X\\
+\Rightarrow K \subseteq \bigcap_{X \in U} X\\
+\\
+$Damit $inf(U) \in V$ muss $inf(U) \cup G$ von G sein.$\\
+$
+\\
+abgeshlossen:\\
+$
+a, b \in inf(U)\\
+\Rightarrow a, b \in \bigcap_{X \in U} X\\
+\Rightarrow a, b \in X \forall X \in U
+\Rightarrow a \oplus b \in X \forall X \in U\\
+\Rightarrow a, b \in inf(U)\\
+$
+\\
+neutr. Element:\\
+$
+e \in X \forall X \in U
+\Rightarrow e \in inf(U)
+$
+\\
+inv. Element:\\
+sei
+$
+a \in inf(U)
+\Rightarrow a \in X \forall X \in U
+\Rightarrow a^{-1} \in X \forall X \in U\\
+\Rightarrow a^{-1} \in inf(U)\\
+$
+\\
+damit ist $<V, \leq>$ ein vollstaendiger Verband
+\end{document}

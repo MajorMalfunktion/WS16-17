@@ -1,0 +1,99 @@
+\documentclass{article}
+\title{MafI 1 UB04}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\setcounter{section}{4}
+
+\begin{document}
+\maketitle
+\newpage
+\subsection{Induktives Definieren}
+\subsubsection\
+$
+f(0) = k^0\\
+f(n) = f(n-1) * k\\
+$
+\subsubsection\
+Eine n-elementige Menge hat $2^n$ Teilmengen\\
+$
+f(0) = 2^0 = 1\\
+f(n) = f(n-1) * 2\\
+$
+\newpage
+\subsection{Backus-Natur-Form}
+\subsubsection\
+$
+<AT> ::= <Dezimalzahl> | <V> | (-<AT>) | (<AT> + <AT>) | (<AT> * <AT>)\\
+<V> ::= X | Y | Z\\
+\\
+            <AT>
+\Rightarrow (<AT> * <AT>)\\
+\Rightarrow ((<AT> * <AT>) * (-<AT>))\\
+\Rightarrow (((<AT> * <AT>) * (<AT> + <AT>)) * (-(-<AT>)))\\
+\Rightarrow ((((-<AT>) * <AT>) * (<AT> + <AT>)) * (-(-<AT>)))\\
+\Rightarrow ((((-<V>) * <Dezimalzahl>) * (<V> + <V>)) * (-(-<Dezimalzahl>)))\\
+\Rightarrow ((((-X) * 5) * (X + Y)) * (-(-3)))\\
+$
+\subsubsection\
+$
+<Dezimalzahl> ::= <Zahl><Dezimalzahl> | <Zif>\\
+<Zahl> ::= 1 | .. | 9\\
+<Zif> ::= 0 | .. | 9\\
+$
+\newpage
+\subsection{Partielle Ordnung, Quasiordnung}
+\subsubsection\
+$
+reflexiv:\\
+\{(a,a), (b,b), (c,c)\} \in R\\
+offensichtlich\ transitiv\\
+antisymetrisch:\\
+offensichtlich\ (a = a, b = b, c = c)\\
+\Rightarrow R\ ist\ partielle\ Ordnung\\
+$
+\subsubsection\
+$
+reflexiv:\\
+|x| \leq |x| \Rightarrow x R x\\
+transitiv:\\
+|x| \leq |y| \land |y| \leq |z| \Rightarrow |x| \leq |z| \Rightarrow x R z\\
+antisymetrisch:\\
+|-1| \leq |1| \land |1| \leq |-1|\\
+-1 \neq 1 \lightning\\
+\Rightarrow R\ ist\ Quasi-Ordnung\\
+$
+\subsubsection\
+$
+reflexiv:\\
+x = y = x \Rightarrow x R x\\
+transitiv:\\
+x = y \land y = z  \Rightarrow x = z\\
+|x| < |y| \land |y| < |z| \Rightarrow |x| < |z| \Rightarrow x R z\\
+antisymetrisch:\\
+(|x| < |y| \lor x = y) \land (|y| < |x| \lor y = x) \Rightarrow x = y\\
+\Rightarrow R\ ist\ partielle\ Ordnung\\
+$
+\newpage
+\subsection{Induktives Definieren}
+\subsubsection\
+Anzahl der moeglichen Partitionen $\pi (n,k)$, der n-Elementigen Menge $M$.\\
+$
+\pi (n,k) = \begin{cases}
+                1,                              & k = 1 \lor k = n\\
+                \pi (n-1,k-1) + k * \pi(n-1,k), & sonst\\
+            \end{cases}
+$
+\subsubsection\
+$
+    P(5)
+=   \pi(5,5) + \pi(5,4) + \pi(5,3) + \pi(5,2) + \pi(5,1)\\
+=   2 + \pi(5,4) + \pi(5,3) + \pi(5,2)\\
+=   52\\
+\\
+N.R\ :\\
+\pi(5,4) = \pi(4,3) + 4 * \pi(4,4) = (\pi(3,2) + 3) + 4 = \pi(2,1) + 9 = 10\\
+\pi(5,3) = \pi(4,2) + 3 * \pi(4,3) + \pi(3,1) + 2 * \pi(3,2) + 18 = 25\\
+\pi(5,2) = 15\\
+$
+\end{document}

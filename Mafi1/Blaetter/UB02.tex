@@ -1,0 +1,100 @@
+\documentclass{article}
+\author{Max Springenberg}
+\title{MafI 1 UB02}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\setcounter{section}{2}
+
+\begin{document}
+\maketitle
+\newpage
+
+\subsection{Praedikatenlogik}
+\subsubsection\
+Praedikat kgV(n,m,x) ist dann erfuellt, wenn x das kgV von n und m ist\\
+\\
+$
+kgV(n,m,x) =_{df} n|x \land m|x \land \forall y.(n|y \land m|y) \Rightarrow y \geq x\\
+$
+\subsubsection\
+$
+\forall n \in \mathbb{N}_{>2}. \exists p, p' \in P = \{2n - 1\}. 2n = p + p'\\
+$
+\subsubsection\
+$
+\neg(   
+        \exists e \in \mathbb{R}. 
+        e > 0 \land \forall n_0 \in \mathbb{N}.
+        \exists n \in \mathbb{N}.
+        n \geq n_0 \land \frac{1}{n} \geq e
+    )\\
+\equiv  \forall e \in \mathbb{R}.
+        e > 0 \Rightarrow \exists n_o \in \mathbb{N}.
+        \forall n \in \mathbb{N}.
+        (\geq n_0) \Rightarrow (\frac{1}{n} < e)\\
+$
+\newpage
+\subsection{Relation}
+\subsubsection\
+gesucht: $(R^{-1} \odot S) \odot T$\\
+\\
+$
+R^{-1} = \{(4,2), (6,2) ,(6,3)\}\\
+R^{-1} \odot S = \{(4,5), (4,6), (6,5), (6,6)\}\\
+(R^{-1} \odot S) \odot T = \{(4,2), (4,6), (4,1), (4,5), (6,2), (6,6), (6,1), (6,5)\}\\
+$
+\subsubsection\
+$
+3|6 \land 3|9 \Rightarrow nicht\ rechtseindeutig\\
+3|6 \land 2|6 \Rightarrow nicht\ linkseindeutig\\
+1 \in \mathbb{N}
+$
+teilt alle Elemente von $\mathbb{N} \Rightarrow$ rechtstotal\\
+Es ist linkstotalitaet (leider keine Loesung)\\
+\subsubsection\
+$
+R = \emptyset = R^{-1}, A = \{1\}, I_A =\{(1,1)\} \\
+R \odot R^{-1} \
+$
+\newpage
+\subsection{Injektiv, Surjektiv}
+\subsection\
+$
+sei\ F(x)=F(y)\\
+                    (-1)^x * x = (-1)^y * y
+\Leftrightarrow     x = y
+\Rightarrow         injektiv\\
+|\mathbb{N}| < |\mathbb{Z}| \Rightarrow
+$
+nach Schubfachprinzip nicht surjektiv\\
+\subsubsection\
+$
+|\mathbb{Z}| > |\mathbb{N}| \Rightarrow
+$
+nach Schubfachprinzip nicht injektiv\\
+$
+\forall n \in \mathbb{N}.g(n) = n \Rightarrow surjektiv\\
+$
+\subsubsection\
+injektiv, da Vorzeichenwechsel aus f durch g neutralisiert wird.\\
+surjektiv, da\ 
+$
+\forall n \in \mathbb{N}. g \circ f (n)=|(-1)^n * n| = n 
+$\\
+\subsubsection\
+nicht injektiv, da g nicht injektiv\\
+nicht surjektiv, da f nicht surjektiv\\
+\newpage
+\subsubsection{Schubfachprinzip}
+Beweis durch Wiederspruch:\\
+Annahme: es ex. keine zwei nichtleere disj. Mengen $Y, Y' \subset X$\\
+Summe Y = Summe Y'\\
+\\
+damit ex. fuer jede Teilmenge von X eine unterschiedliche Summe.\\
+$2^{10} = 1024$ unterschiedliche Teilmengen.\\
+\\
+Die Summen sind $\in \{1,..,955\}$\\
+\\
+Das Schubfachprinzip sagt, dass es keine injektive Funkt. gibt, die den Teilmengen Summen zuordnet.\\
+Somit muss es Teilmengen mit den selben Summen geben.
+\end{document}

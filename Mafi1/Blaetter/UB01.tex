@@ -1,0 +1,139 @@
+\documentclass{article}
+\author{Max Springenberg}
+\title{Uebungsgblatt 1}
+\setcounter{section}{1}
+\usepackage{amssymb}
+
+\begin{document}
+\maketitle
+\newpage
+
+\subsection{Aussagenlogik Quizshow}
+\subsubsection\ 
+A:\\
+1: Die Box ist leer\\
+2: Das Gold ist nicht in dieser Box\\
+3: Das Gold ist in Box 2\\
+\\
+A = $
+    (B_1 \land \neg B_2 \land \neg B_3) \lor
+    (\neg B_1 \land B_2 \land \neg B_3) \lor
+    (\neg B_1 \land \neg B_2 \land B_3)
+    $\\
+\\
+$C_i :=$ Hinweis i ist richtig\\
+\\
+$
+C_1 := \neg B_1 \land B_2 \land \neg B_2 
+\equiv \bot\\ 
+C_2 := B_1 \land \neg B_2 \land \neg B_2 
+\equiv B_1 \land \neg B_2 \\
+C_3 := B_1 \land B_2 \land B_2i 
+\equiv B_1 \land B_2\\
+$
+\\
+\subsubsection\ 
+Wenn in einer Spalte $A \land (C_1 \lor C_2 \lor C_3) \equiv A \land (C_2 \lor C_3)$ wahr ist, 
+so ist in dieser die Wahrheitsbelegung der Boxen die richtige.\\
+\\
+\begin{tabular}{llllll}
+        $B_1$   &$B_2$  &$B_3$  &A  &$(C_2 \lor C_3)$   &$A \land (C_2 \lor C_3)$\\
+        0       &0      &1      &1  &0                  &0\\
+        0       &1      &0      &1  &0                  &0\\
+        0       &1      &1      &0  &0                  &0\\
+        1       &0      &0      &1  &1                  &1\\
+        1       &0      &1      &0  &1                  &0\\
+        1       &1      &0      &0  &1                  &0\\
+        1       &1      &1      &0  &1                  &0\\
+\end{tabular}\\
+\\
+damit ist das Gold in Box 1.\\
+\\
+\subsection{logische Umformungen} 
+\subsubsection\
+Neutralitaet:\\
+$
+        \top \land A 
+\equiv  (A \lor \neg A) \land A 
+\equiv  A\\
+        F \lor A 
+\equiv  (A \land \neg A) \lor A
+\equiv  A\\
+$
+\subsubsection\
+Idempotenz:\\
+$
+        A \lor A
+\equiv  (A \lor A) \land \top
+\equiv  (A \lor A) \land (A \lor \neg A)
+\equiv  A \lor (A \land \neg A)
+\equiv  A \lor F
+\equiv  A\\
+        A \land A
+\equiv  (A \land A) \lor \top
+\equiv  (A \land A) \lor (A \land \neg A)
+\equiv  A \land (A \lor \neg A)
+\equiv  A \land \top
+\equiv  A\\
+$
+\subsubsection\
+Doppelnegation:\\
+$
+        \neg \neg A
+\equiv  \neg \neg A \land \top
+\equiv  \neg \neg A \land (A \lor \neg A)
+\equiv  (\neg \neg A \land A) \lor (\neg \neg A \land \neg A)
+\equiv  (\neg \neg A \land A) \lor F
+\equiv  (\neg \neg A \land A) \lor (A \land \neg A)
+\equiv  A \land (A \lor \neg A)
+\equiv  A \lor F 
+\equiv  A\\
+$
+\subsection{Mengen und Mengenaequivalenzen}
+\subsubsection\
+(a)\\
+$
+    (A^C \cup B^C)^C \cup (A^C \cup B^C)^C
+=   (A \cap B) \cup (A \cap B^C)
+=   A \cap (B \cup B^C)
+=   A \cap M 
+=   A\\
+$
+\\
+(b)\\
+$
+    ((A \cup B)^C \cap E)^C \cup (D \cap A)
+=   (A^C \cap B^C \cap E)^C \cup (D \cap A)
+=   A \cup B \cup E^C \cup (D \cap A)
+=   A \cup B \cup E^C
+$
+\subsubsection\
+"$\Rightarrow$":\\
+$
+A = B \Rightarrow P(A) = P(B)\\
+P(A) = \{x | x \subseteq A\} = \{x | x \subseteq B\} = P(B)\\
+$
+\\
+"$\Leftarrow$":\\
+Kontraposition bzgl. $A \neq B \Rightarrow P(A) \neq P(B)$\\
+Sei $A \neq B$ und damit $a \in A \setminus B, \{a\} \subseteq A$\\
+damit gilt $\{a\} \subseteq P(A), \{a\} \nsubseteq P(B)$\\
+und damit auch$P(A) \neq P(B)$\\
+\subsection{Mengen}
+\subsubsection\
+$A \cap B \neq \emptyset$:\\
+gelte $\exists x. x \in A \Rightarrow x \in B$\\
+nach Df. der Mengendifferenz gilt $x \notin ((A \setminus B) \cup (B \setminus A))$\\
+es gilt ferner $x \in A \cup B \Rightarrow (A \setminus B) \cup (B \setminus A) \neq A \cup B$\\
+\subsubsection\
+Gegenbeispiel:\\
+$
+A = B = \emptyset\\
+\\
+    P(\emptyset) 
+=   \{ \emptyset \}
+\neq P(A) \subset P(B) 
+=   P( \emptyset ) \setminus P( \emptyset )
+= \emptyset
+$
+\end{document}
