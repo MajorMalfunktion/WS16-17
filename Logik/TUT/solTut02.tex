@@ -1,0 +1,132 @@
+\documentclass{article}
+\author{Max Springneberg}
+\title{Logik TUT 2}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\setcounter{section}{2}
+
+\begin{document}
+\maketitle
+\newpage
+
+\subsection{Markierungsalgorithmus}
+\subsubsection\
+$
+\varphi =
+        (\neg A \lor (C \land \neg D \land E)) \land
+        (F \rightarrow (\neg A \lor G)) \land
+        ((F \land L) \rightarrow A) \land 
+        L \land 
+        \neg M \land
+        (E \rightarrow (\neg C \lor \neg D)) \land
+        F \land 
+        G\\
+\equiv  (\neg A \lor C) \land 
+        (\neg A \lor \neg D) \land 
+        (\neg A \lor E)) \land
+        (\neg F \lor \neg A \lor G) \land
+        ((F \land L) \rightarrow A) \land
+        L \land
+        \neg M \land
+        (\neg E \lor \neg C \lor \neg D) \land
+        F \land
+        G\\
+\equiv  (A \rightarrow C) \land 
+        ((A \land D) \rightarrow \bot) \land 
+        (A \rightarrow E)) \land
+        ((F \land A) \rightarrow G) \land
+        ((F \land L) \rightarrow A) \land
+        (\top \rightarrow L) \land
+        (M \rightarrow \bot) \land
+        ((E \land C \land D) \rightarrow \bot) \land
+        (\top \rightarrow F) \land
+        (\top \rightarrow G)
+= \varphi'\\
+$
+\\
+$\varphi'$ ist offensichtlich Hornformel, 
+damit kann der Markierungsalgorithmus durchgefuehrt werden.\\
+\\
+Markierte Literale:\\
+Schritt 1:\\
+F, G, L\\
+\\
+Schritt 2:\\
+A\\
+\\
+Schritt 3:\\
+C, E\\
+\\
+Schritt 4:\\
+keine weiteren Schritte mehr moeglich, die Formel ist erfuellbar.\\
+\subsubsection\
+$
+\psi =
+        (\neg(D \land E) \lor \neg B) \land
+        A \land
+        (C \lor \neg A) \land
+        (\neg A \lor ((E \lor \neg C) \land (\neg C \lor B)) \lor \neg D) \land 
+        D\\
+\equiv  ((D \land E \land B) \rightarrow \bot) \land
+        (\top \rightarrow A) \land
+        (A \rightarrow C) \land
+        (
+            \neg (A \land D) \lor
+            ((E \lor \neg C) \land (\neg C \lor B))
+        ) \land
+        (\top \rightarrow D)\\
+\equiv  ((D \land E \land B) \rightarrow \bot) \land
+        (\top \rightarrow A) \land
+        (A \rightarrow C) \land
+        (
+            (\neg (A \land D) \lor (E \lor \neg C)) \land 
+            (\neg (A \land D) \lor (\neg C \lor B))
+        ) \land
+        (\top \rightarrow D)\\
+\equiv  ((D \land E \land B) \rightarrow \bot) \land
+        (\top \rightarrow A) \land
+        (A \rightarrow C) \land
+        (
+            (\neg A \lor \neg D \lor E \lor \neg C) \land
+            (\neg A \lor \neg D \lor \neg C \lor B)
+        ) \land
+        (\top \rightarrow D)\\
+\equiv  ((D \land E \land B) \rightarrow \bot) \land
+        (\top \rightarrow A) \land
+        (A \rightarrow C) \land
+        ((A \land D \land C) \rightarrow E) \land
+        ((A \land D \land C) \rightarrow B) \land
+        (\top \rightarrow D)
+= \psi'\\
+$
+\\
+$\psi'$ ist offensichtlich Hornformel, 
+damit kann der Markierungsalgorithmus durchgefuehrt werden.\\
+\\
+Markierte Literale:\\
+Schritt 1:\\
+D, A\\
+Schritt 2:\\
+C\\
+Schritt 3:\\
+E, B\\
+Schritt 4:\\
+$(D \land E \land B) \rightarrow \bot) \lightning$\\
+\\
+damit ist $\psi'$ nicht erfuellbar\\
+\newpage
+\subsection{Aussagenlogische Resulotion}
+\subsubsection\
+$A$ aus $(C), (\neg C \lor A)$\\
+$\neg C \lor \neg A$ aus $(B), (\neg B \lor \neg C \lor \neg A)$
+$\neg A$ aus $(C), (\neg C \lor \neg A)$\\
+$\Box$ aus $(A), (\neg A)$\\
+\subsubsection\
+$\neg B$ aus $(\neg D), (\neg B \lor D)$\\
+$C$ aus $(E), (\neg E  \lor C)$\\
+$A \lor B$ aus $(C), (A \lor B \lor \neg C)$\\
+$A$ aus $(\neg B), (A \lor B)$\\
+$F$ aus $(A), (\neg A \lor F)$\\
+$\Box$ aus $(F), (\neg F)$\\
+\end{document}

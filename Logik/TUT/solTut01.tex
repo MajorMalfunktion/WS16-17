@@ -1,0 +1,103 @@
+\documentclass{article}
+\author{Max Springneberg}
+\title{Logik TUT 1}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\setcounter{section}{1}
+
+\begin{document}
+\maketitle
+\newpage
+
+\subsection{Umgangssprache modellieren}
+S := Die Sonne scheint, T := Tim geht ins Stadion, R := Es regnet\\
+\subsubsection\
+$
+T \rightarrow S\\
+$
+\subsubsection\
+nicht modellierbar\\
+\subsubsection\
+$
+T \rightarrow \neg R\\
+$
+\subsubsection\
+$
+T \rightarrow S\\
+$
+\subsubsection\
+$
+T \rightarrow \neg (S \land R)\\
+$
+\subsubsection\
+nicht modellierbar\\
+\subsubsection\
+$
+        (R \land \neg T) \lor (T \land \neg R)
+\equiv  (R \leftrightarrow \neg T)\\
+$
+\subsubsection\
+$
+S \rightarrow T\\
+$
+\subsubsection\
+$
+T \rightarrow S\\
+$
+\subsubsection\
+$
+T \rightarrow S\\
+$
+\subsubsection\
+$
+T \rightarrow \neg R\\
+$
+\newpage
+\subsection{Situationen modellieren}
+$C_i$ := Computer i wird benutzt, $U_i$ := Benutzer i ist im Raum\\
+\\
+$
+\varphi_1 = U_1 \rightarrow (
+                                (C_1 \land \neg C_2 \land \neg C_3) \lor
+                                (\neg C_1 \land C_2 \land \neg C_3) \lor
+                                (\neg C_1 \land \neg C_2 \land C_3)
+                            )\\
+\varphi_2 = (U_1 \land U_2) \rightarrow (
+                                            (C_1 \land C_2 \land \neg C_3) \lor
+                                            (\neg C_1 \land C_2 \land C_3) \lor
+                                            (C_1 \land \neg C_2 \land C_3)
+                                        )\\
+\varphi_3 = (U_1 \land U_2 \land U_3) \rightarrow   (
+                                                        (C_1 \land C_2 \land C_3)
+                                                    )\\
+\\
+\varphi = \varphi_1 \land \varphi_2 \land \varphi_3\\
+$
+\newpage
+\subsection{Normalformen}
+\subsubsection\
+NNF\\
+$
+\varphi =   
+        \neg(((A \rightarrow B) \land (\neg C \rightarrow \neg D))\lor E)
+\equiv  (\neg ((A \rightarrow B) \land (\neg C \rightarrow \neg D)) \land \neg E)\\
+\equiv  (\neg (A \rightarrow B) \lor \neg (\neg C \rightarrow \neg D)) \land \neg E\\
+\equiv  ((A \land \neg B) \lor (\neg C \land D)) \land \neg E 
+= \varphi'\\
+$
+\subsubsection\
+KNF\\
+$
+\varphi' = 
+        ((A \land \neg B) \lor (\neg C \land D)) \land \neg E\\
+\equiv  ((A \lor (\neg C \land D)) \land (\neg B \lor (\neg C \land D))) \land \neg E\\
+\equiv  (((A \lor \neg C) \land (A \lor D)) \land 
+        (\neg B \lor \neg C) \land (\neg B \land D)) \land 
+        \neg E\\
+\equiv  (A \lor \neg C) \land (A \lor D) \land 
+        (\neg B \lor \neg C) \land (\neg B \land D) \land 
+        \neg E
+= \varphi''\\
+$
+\end{document}
