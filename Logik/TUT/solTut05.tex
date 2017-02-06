@@ -1,0 +1,174 @@
+\documentclass{article}
+\author{Max Springenberg}
+\title{Logik TUT 5}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\setcounter{section}{5}
+
+\begin{document}
+\maketitle
+\newpage
+
+\subsection{Noch ein Erfuellbarkeitstest}
+\subsubsection\
+NNF bilden:\\
+$
+\varphi =   \neg ((\neg A \lor B) \rightarrow (C \lor \neg A))\\
+\equiv      \neg (\neg (\neg A \lor B) \lor (C \lor \neg A))\\
+\equiv      (\neg A \lor B) \land \neg (C \lor \neg A)\\
+\equiv      (\neg A \lor B) \land \neg C \land A
+= \varphi'\\
+\\
+$Tableaukalkuel:\\$
+\begin{matrix}
+        &A\\
+        &|\\
+        &\neg C\\
+        &|\\
+        &(\neg A \lor B)\\
+        &l,r\\
+        l:\\
+        \neg A\\
+        \lightning\\
+        &&r:\\
+        &&B\\ 
+        &&\checkmark\\
+\end{matrix}\\
+$
+\subsubsection\
+NNF bilden:\\
+$
+\varphi =   \neg ((A \rightarrow B) \rightarrow B) \land A\\
+\equiv      \neg (\neg(A \rightarrow B) \lor B) \land A\\
+\equiv      \neg (\neg(\neg A \lor B) \lor B) \land A\\
+\equiv      (\neg A \lor B) \land \neg B \land A
+= \varphi'\\
+\\
+$Tableaukalkuel:\\$
+\begin{matrix}
+        &A\\
+        &|\\
+        &\neg B\\
+        &|\\
+        &(\neg A \lor B)\\
+        &l,r\\
+        l:\\ 
+        \neg A\\ 
+        \lightning\\
+        &&r:\\ 
+        &&B\\ 
+        &&\lightning\\
+\end{matrix}\\
+$
+\subsubsection\
+NNF vorhanden\\
+\\
+Tableaukalkuel:\\
+$
+\begin{matrix}
+        &s1, \varphi\\
+        &l,r\\
+        l: s1, \Diamond (\Diamond A \land B)\\
+        |\\
+        (s1, s2) \in E\\
+        |\\
+        s2, (\Diamond A \land B)\\
+        |\\
+        s2, B\\
+        |\\
+        s2, \Diamond A\\
+        |\\
+        (s2, s3) \in E\\
+        |\\
+        s3, A\\ 
+        \checkmark\\
+        &&r: s1, \Diamond B\\
+        &&|\\
+        &&(s1, s4) \in E\\
+        &&|\\
+        &&s4, B\\ 
+        &&\checkmark\\
+\end{matrix}\\
+$
+\subsubsection\
+NNF vorhanden\\
+\\
+Tableaukalkuel:\\
+$
+\begin{matrix}
+        &s1, \varphi\\
+        &\Diamond A\\
+        &|\\
+        &\Box C\\
+        &|\\
+        &\Diamond(\Box A \land \Box \neg B)\\
+        &|\\
+        &(s1,s2) \in E\\
+        &|\\
+        &s2, C\\
+        &|\\
+        &s2, A\\
+        &|\\
+        &(s1, s3) \in E\\
+        &|\\
+        &s3, C\\
+        &|\\
+        &s3, (\Box A \land \Box \neg B)\\
+        &|\\
+        &(s3, s4) \in E\\
+        &|\\
+        &s4, A\\
+        &|\\
+        &s4, \neg B\\
+        &\checkmark\\
+\end{matrix}\\
+$
+\subsubsection\
+NNF bilden:\\
+$
+\varphi =   \Box (B \rightarrow (\Diamond A \land \Box \neg A)) \land \Box B\\
+\equiv      \Box (\neg B \lor (\Diamond A \land \Box \neg A)) \land \Box B
+= \varphi'\\
+$Tableaukalkuel:\\$
+\begin{matrix}
+        &s1, \varphi'\\
+        &|\\
+        &s1, \Box B\\
+        &|\\
+        &s1, \Box (\neg B \lor (\Diamond A \land \Box \neg A))\\
+        &|\\
+        &(s1, s2) \in E\\
+        &|\\
+        &s2, B\\
+        &|\\
+        &s2, (\neg B \lor (\Diamond A \land \Box \neg A))\\
+        &l,r\\
+        l:\\
+        s2, \neg B(*)\\
+        \lightning\\
+        &&r:\\
+        &&s2, (\Diamond A \land \Box \neg A)\\
+        &&|\\
+        &&(s2, s3) \in E\\
+        &&|\\
+        &&s3, \neg A\\
+        &&|\\
+        &&(s2, s4) \in E\\
+        &&s4, \neg A\\
+        &&s4, A\\
+        &&\lightning\\
+\end{matrix}\\
+$
+alternativ:\\
+$       
+        \varphi' 
+\equiv  \Box (\neg B \lor (\Diamond A \land \neg \Diamond A)) \land \Box B\\
+\equiv  \Box (\neg B \lor \bot) \land \Box B\\
+\equiv  \Box \neg B \land \Box B\\
+\equiv  \bot\\
+$
+\newpage
+\subsection{Anwendung des Erfuellbarkeitstest}
+
+\end{document}

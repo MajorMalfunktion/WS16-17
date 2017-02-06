@@ -1,0 +1,83 @@
+\documentclass{article}
+\author{Max Springenberg}
+\title{Logik TUT 4}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\setcounter{section}{4}
+
+\begin{document}
+\maketitle
+\newpage
+
+\subsection{Wandern 2.0}
+\subsubsection\
+a) nein\\
+b) nein\\
+c) ja\\
+d) nein\\
+e) nein\\
+\subsubsection\
+A)\\
+$
+\Box (C \land \Diamond B)\\
+$
+B)\\
+$
+\Diamond (C \land \Box A)\\
+$
+C)\\
+$
+\neg \Diamond A \rightarrow \Box (B \lor C)\\
+$
+D)\\
+$
+\Box \Box B\\
+$
+\subsubsection\
+A)\\
+1\\
+B)\\
+nicht existent\\
+\newpage
+\subsection{Aequivalenz oder nicht}
+\subsubsection\
+$
+\varphi_1 = \neg \Box A \lor \neg \Box \neg B \\
+\equiv      \Diamond \neg A \lor \Diamond \neg \neg B\\
+\equiv      \Diamond(A \rightarrow B)
+= \psi_1\\
+$
+\subsubsection\
+$
+\varphi_2 = \Box (A \rightarrow B)\\
+\equiv      \Box (\neg A \lor B)\\
+\equiv      \Box \neg A \lor \Box B\\
+\not\equiv  \neg (\Box A) \lor \Box B\\
+\equiv      \Box A \rightarrow \Box B
+= \psi_2\\
+$
+\subsubsection\
+$
+\varphi_3 = \Diamond (A \rightarrow (\Box B \rightarrow \Diamond C))\\
+\equiv      \Diamond (A \rightarrow (\neg \Box B \lor \Diamond C))\\
+\equiv      \Diamond (A \rightarrow (\Diamond \neg B \lor \Diamond C))\\
+\equiv      \Diamond (A \rightarrow \Diamond (\neg B \lor C))\\
+\equiv      \Diamond \neg A \lor \Diamond \Diamond (\neg B \lor C)\\
+\equiv      \neg \Box A \lor \Diamond \Diamond (\neg B \lor C)\\
+\equiv      \Box A \rightarrow \Diamond \Diamond (\neg B \lor C)
+= \psi_3\\
+$
+\subsubsection\
+$
+\varphi_4 = \Box(A \rightarrow (\Diamond B \rightarrow \Box C))\\
+\equiv      \Box(A \rightarrow (\neg \Diamond B \lor \Box C))\\
+\equiv      \Box(\neg A \lor (\Box \neg B \lor \Box C))\\
+\equiv      \Box(\neg A \lor \Box (\neg B \lor C))\\
+\equiv      \Box \neg A \lor \Box \Box (\neg B \lor C)\\
+\equiv      \neg \Diamond A \lor \Box \Box (\neg B \lor C)\\
+\equiv      \Diamond A \rightarrow \Box \Box (\neg B \lor C)\\
+\not\equiv  \Box A \rightarrow \Box \Box (\neg B \lor C)
+= \psi_4\\
+$
+\end{document}

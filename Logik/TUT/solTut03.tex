@@ -1,0 +1,147 @@
+\documentclass{article}
+\author{Max Springenberg}
+\title{Logik TUT 3}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\setcounter{section}{3}
+
+\begin{document}
+\maketitle
+\newpage
+
+\subsection{Kuchen}
+$
+\varphi_1 = P \rightarrow G\\
+\varphi_2 = M \rightarrow (G \lor P)\\
+\\
+\varphi =   (P \rightarrow G) \land (M \rightarrow (G \lor P))\\
+\equiv      (\neg P \lor G) \land (\neg M \lor G \lor P) = \varphi'\\
+\\
+$
+$(M \lor G)$ aus $(\neg P \lor G), (\neg M \lor G \lor P)$\\
+$(G \lor P)$ aus $(M \lor G), (\neg M \lor G \lor P)$\\
+$(G)$ aus $(G \lor P), (\neg P \lor G)$\\
+\newpage
+\subsection{Besuch}
+\subsubsection\
+$
+\varphi_1 = (H \rightarrow F)\\
+\varphi_2 = (U \lor K)\\
+\varphi_3 = (F \leftrightarrow \neg T)\\
+\varphi_4 = ((T \land K) \lor (\neg T \land \neg K))\\
+\varphi_5 = (U \rightarrow (H \land K))\\
+\\
+$
+\subsubsection\
+$
+\varphi =   (H \rightarrow F) \land 
+            (U \lor K) \land 
+            (F \leftrightarrow \neg T) \land 
+            ((T \land K) \lor (\neg T \land \neg K)) \land 
+            (U \rightarrow (H \land K))\\
+\equiv      (\neg H \lor F) \land 
+            (U \lor K) \land 
+            ((F \land \neg T) \lor (\neg F \land T)) \land 
+            ((T \land K) \lor (\neg T \land \neg K)) \land 
+            (\neg U \lor (H \land K))\\
+\equiv      (\neg H \lor F) \land 
+            (U \lor K) \land 
+            ((F \lor (\neg F \land T)) \land 
+            (\neg T \lor (\neg F \land T))) \land 
+            ((T \lor(\neg T \land \neg K)) \land 
+            (K \lor (\neg T \land \neg K)) \land
+            (\neg U \lor H) \land 
+            (U \lor K)\\
+\equiv      (\neg H \lor F) \land 
+            (U \lor K) \land 
+            (F \lor \neg F) \land 
+            (F \lor T) \land 
+            (\neg T \lor \neg F) \land 
+            (\neg T \lor T) \land 
+            (T \lor \neg T) \land
+            (T \lor \neg K) \land 
+            (K \lor \neg T) \land 
+            (K \lor \neg K)) \land
+            (\neg U \lor H) \land 
+            (U \lor K)\\
+\equiv      (\neg H \lor F) \land 
+            (U \lor K) \land 
+            \top \land 
+            (F \lor T) \land 
+            (\neg T \lor \neg F) \land 
+            \top \land 
+            \top \land
+            (T \lor \neg K) \land 
+            (K \lor \neg T) \land 
+            \top \land
+            (\neg U \lor H)
+= \varphi'\\
+$
+\\
+damit ist 
+$
+C =  \{
+         (\neg H \lor F),
+         (U \lor K),
+         (F \lor T),
+         (\neg T \lor \neg F),
+         (T \lor \neg K),
+         (K \lor \neg T),
+         (\neg U \lor H)
+     \}\\
+$
+%\subsubsection\
+%$$ aus $$\\
+\newpage
+\subsection{Die Gefaehrten}
+\subsubsection\
+$
+\varphi_1 = (\neg J \rightarrow \neg B)\\
+\varphi_2 = ((B \land S) \rightarrow J)\\
+\varphi_3 = ((B \land \neg J) \rightarrow S)\\
+\varphi_4 = ((\neg J \land \neg B) \rightarrow \neg W)\\
+\\
+\varphi =   (\neg J \rightarrow \neg B) \land 
+            ((B \land S) \rightarrow J) \land 
+            ((B \land \neg J) \rightarrow S) \land
+            ((\neg J \land \neg B) \rightarrow \neg W)
+$
+\subsubsection\
+$
+\varphi =   (\neg J \rightarrow \neg B) \land 
+            (J \rightarrow (B \land S)) \land 
+            (B \rightarrow S) \land
+            (S \rightarrow \neg J) \land
+            ((\neg J \land \neg B) \rightarrow \neg W)\\
+\equiv      (J \lor \neg B) \land
+            (\neg J \lor (B \land S)) \land
+            (\neg B \lor S) \land
+            (\neg S \lor \neg J) \land
+            (J \lor B \lor \neg W)
+\equiv      (J \lor \neg B) \land
+            (\neg J \lor B) \land 
+            (\neg J \lor S) \land
+            (\neg B \lor S) \land
+            (\neg S \lor \neg J) \land
+            (J \lor B \lor \neg W)
+= \varphi'\\
+$
+\subsubsection\
+$
+C = \{
+        (J \lor \neg B),
+        (\neg J \lor B),
+        (\neg J \lor S),
+        (\neg B \lor S),
+        (\neg S \lor \neg J),
+        (J \lor B \lor \neg W)
+    \}
+\\
+$
+$(\neg B \lor \neg J)$ aus $(\neg B \lor S), (\neg S \lor \neg J)$\\
+$(\neg B)$ aus $(\neg B \lor \neg J), (J \lor \neg B)$\\
+$(\neg J)$ aus $((\neg B), (\neg J \lor B))$\\
+$(J \lor \neg W)$ aus $(\neg B), (J \lor B \lor \neg W)$\\
+$(\neg W)$ aus $(\neg J), (J \lor \neg W)$\\
+\end{document}

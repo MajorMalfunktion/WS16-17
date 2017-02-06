@@ -1,0 +1,97 @@
+\documentclass{article}
+\author{Max Springenberg}
+\title{Logik TUT 6}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\setcounter{section}{6}
+
+\begin{document}
+\maketitle
+\newpage
+
+\subsection{Kripkestrukturen}
+\subsubsection\
+\begin{tabular}{l||l|l|l|l|l|l|l}
+        $s  \in K  $&1&2&2&3&3&4&4\\
+        \hline
+        $s^*\in K^*$&1&2&4&3&5&3&5\\
+\end{tabular}\\
+rausfallen werden:\\
+$(1,1)$, da $(1,3) \in E$\\
+$(3,3), (3,5)$, da $(3,1) \in E$\\
+\\
+damit ist die Menge aller Relationspaare:\\
+$
+S =\{(2,2), (2,4), (4,3), (4,5)\}\\
+$
+\subsubsection\
+$
+\varphi = \Diamond A \land \Diamond B\\
+$
+\\
+wohlmoeglich auch minimalistischer loesbar mit:\\
+$
+\varphi' = \Diamond A\\
+$
+\newpage 
+\subsection{Kripkestrukturen}
+\subsubsection\
+\begin{tabular}{l||l|l|l|l|l|l|l|l}
+        $s_1 \in K_1$&1&1&2&3&4& 4&5&5\\
+        \hline
+        $s_2 \in K_2$&7&8&6&6&9&10&7&8\\
+\end{tabular}\\
+rausfallen werden:\\
+$(1,8)$, da $(1,2) \in E_1$\\
+$(2,6), (3,6)$, da $(6,7) \in E_2$\\
+$(1,7)$, da $(7,6) \in E_2$\\
+$(5,7)$, da $(5,4) \in E_1$\\
+$(5,8)$, da $(8,7) \in E_2$\\
+\\
+damit ist die Menge alle Relationspaare:\\
+$
+S = \{(4,9), (4,10)\}
+$
+\subsubsection\
+(i)\\
+$
+\varphi_i = \Box (B \land \Box (A \land B))\\
+$
+(ii)\\
+nein, da $(4,9) \in S$\\
+\subsubsection\
+$
+\begin{matrix}
+        &A\\
+        B   && B\\
+        A,B && A,B\\
+        A,B && A,B\\
+\end{matrix}\\
+$
+\newpage
+\subsection{Kripkestrukturen}
+\subsubsection\
+G := Zahl ist gerade\\
+S := Zahl ist schwarz\\
+\\
+$
+\varphi_1 = G \lor \Diamond G \lor \Diamond \Diamond G\\
+\varphi_2 = S \rightarrow \Box \neg S\\
+        \neg \Diamond ((\neg G \land \neg S) \land \Diamond (\neg G \land \neg S))\\
+\equiv  \Box \neg ((\neg G \land \neg S) \land \Diamond (\neg G \land \neg S))\\
+\equiv  \Box (G \lor S \lor \Box (G \lor S))
+= \varphi_3\\
+\\
+\varphi =   (G \lor \Diamond G \lor \Diamond \Diamond G) \land
+            (S \rightarrow \Box \neg S) \land
+            (G \lor S \lor \Box (G \lor S))\\
+$
+\subsubsection\
+$
+s1 = S \land G\\
+s2 = \neg S\\
+\\
+(s1,s2) \in E\\
+$
+\end{document}

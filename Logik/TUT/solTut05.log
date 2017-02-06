@@ -2,8 +2,8 @@ This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**solTut02.tex
-(./solTut02.tex
+**solTut05.tex
+(./solTut05.tex
 LaTeX2e <2016/02/01>
 Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -96,8 +96,8 @@ Package: stmaryrd 1994/03/03 St Mary's Road symbol package
 \symstmry=\mathgroup6
 LaTeX Font Info:    Overwriting symbol font `stmry' in version `bold'
 (Font)                  U/stmry/m/n --> U/stmry/b/n on input line 89.
-) (./solTut02.aux)
-\openout1 = `solTut02.aux'.
+) (./solTut05.aux)
+\openout1 = `solTut05.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
 LaTeX Font Info:    ... okay on input line 9.
@@ -125,100 +125,63 @@ LaTeX Font Info:    Try loading font information for U+stmry on input line 10.
 (/usr/share/texlive/texmf-dist/tex/latex/stmaryrd/Ustmry.fd) [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 15--63
+Underfull \hbox (badness 10000) in paragraph at lines 15--39
 
  []
 
 
-Overfull \hbox (5.26456pt too wide) in paragraph at lines 15--63
-\OML/cmm/m/it/10 '[]$ \OT1/cmr/m/n/10 ist of-fen-sichtlich Horn-formel, damit k
-ann der Markierungsal-go-rith-mus durchge-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 15--63
+Underfull \hbox (badness 10000) in paragraph at lines 40--64
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 15--63
+Underfull \hbox (badness 10000) in paragraph at lines 65--94
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 15--63
+Underfull \hbox (badness 10000) in paragraph at lines 65--94
+
+ []
+
+[2]
+Underfull \hbox (badness 10000) in paragraph at lines 95--127
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 15--63
+Underfull \hbox (badness 10000) in paragraph at lines 95--127
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 15--63
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 64--118
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 128--171
 
  []
 
-
-Overfull \hbox (5.59558pt too wide) in paragraph at lines 64--118
-\OML/cmm/m/it/10  []$ \OT1/cmr/m/n/10 ist of-fen-sichtlich Horn-formel, damit k
-ann der Markierungsal-go-rith-mus durchge-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 64--118
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 64--118
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 64--118
-
- []
-
-[2] [3]
-Underfull \hbox (badness 10000) in paragraph at lines 121--125
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 126--132
-
- []
-
-[4] (./solTut02.aux) ) 
+[4] [5] [6] (./solTut05.aux) ) 
 Here is how much of TeX's memory you used:
  1289 strings out of 493029
  14433 string characters out of 6136233
- 70191 words of memory out of 5000000
+ 73191 words of memory out of 5000000
  4849 multiletter control sequences out of 15000+600000
  12122 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 27i,6n,26p,224b,197s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/stmaryrd/stmary10.pfb>
-Output written on solTut02.pdf (4 pages, 95469 bytes).
+ 27i,12n,26p,224b,197s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/stmaryrd/stmary10.pfb>
+Output written on solTut05.pdf (6 pages, 93735 bytes).
 PDF statistics:
- 57 PDF objects out of 1000 (max. 8388607)
- 40 compressed objects within 1 object stream
+ 63 PDF objects out of 1000 (max. 8388607)
+ 44 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
