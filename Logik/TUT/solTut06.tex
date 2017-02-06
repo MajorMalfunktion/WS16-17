@@ -78,9 +78,9 @@ S := Zahl ist schwarz\\
 $
 \varphi_1 = G \lor \Diamond G \lor \Diamond \Diamond G\\
 \varphi_2 = S \rightarrow \Box \neg S\\
-        \neg \Diamond ((\neg G \land \neg S) \land \Diamond (\neg G \land \neg S))\\
-\equiv  \Box \neg ((\neg G \land \neg S) \land \Diamond (\neg G \land \neg S))\\
-\equiv  \Box (G \lor S \lor \Box (G \lor S))
+        \neg ((\neg G \land \neg S) \land \Diamond (\neg G \land \neg S))\\
+\equiv  (\neg (\neg G \land \neg S) \land \Box \neg (\neg G \land \neg S))\\
+\equiv  (G \lor S \lor \Box (G \lor S))
 = \varphi_3\\
 \\
 \varphi =   (G \lor \Diamond G \lor \Diamond \Diamond G) \land
