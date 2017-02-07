@@ -1,0 +1,150 @@
+\documentclass{article}
+\author{Max Springenberg}
+\title{Logik TUT 9}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\setcounter{section}{9}
+
+\begin{document}
+\maketitle
+\newpage
+
+\subsection{Interpretation}
+Grundmenge: 
+$
+\mathbb{N}\\
+P^A = \{(a,b) | a\ `mod`\ b == 0\}\\
+f^A = 2 * a, \forall a \in \mathbb{N}\\
+\beta (x) = 2\\
+\\
+\varphi =   \forall z (P(x,z) \rightarrow \exists y (f(y) = z))\\
+\equiv      \forall z (\neg P(x,z) \lor \exists y (f(y) = z)\\
+\equiv      \neg \exists z (P(x,z)) \lor \forall z \exists y (f(y) = z)
+= \varphi'\\
+\\
+\\
+$mit $
+\varphi' = \varphi'_1 \lor \varphi'_2\\
+\\
+\llbracket P(x,z) \rrbracket_{I[z/n]} = \top, \forall n \in \mathbb{N}\\
+$damit also $
+    \llbracket \varphi'_1 \rrbracket_I 
+=   \llbracket \neg \exists z (P(x,z)) \rrbracket_I
+=   \bot\\
+\\
+    \llbracket \exists f(y) 
+=   z \rrbracket_{I[z/m]} 
+=   \bot, \forall m \in \{2n - 1 | n \in \mathbb{N}\}\\
+$damit also $
+    \llbracket \varphi'_2 \rrbracket_I
+=   \llbracket \forall z \exists y (f(y) = z) \rrbracket_I
+=   \bot\\
+\\
+$damit $\bot = \varphi' \equiv \varphi\\
+$und damit auch $ \varphi = \bot\\
+$
+\newpage
+\subsection{Normalformen}
+Praenexformen:\\
+$
+\varphi =   R(x) \lor \forall x (\neg \exists x R(g(x) \land \exists y S(x,y)))\\
+\equiv      R(x) \lor \forall x (\forall x \neg R(g(x) \land \exists y S(x,y)))
+= \varphi'\\
+\\
+\psi =  \forall x (\exists y (P(x,g(y))) \lor \exists y P(z,y)) \land \neg \exists z \neg P(x,z)\\
+\equiv  \forall x (\exists y (P(x,g(y))) \lor \exists y P(z,y)) \land \forall z (P(x,z))
+= \psi'\\
+$
+\\
+Skolemformen:\\
+$
+\varphi' =  R(x) \lor \forall x (\forall x \neg R(g(x) \land \exists y S(x,y)))\\
+\equiv      R(x) \lor \forall x (\forall x \neg R(g(x) \land S(x,h(x))))
+= \varphi'', h(x) = y\\
+\\
+\psi' = \forall x (\exists y (P(x,g(y))) \lor \exists y P(z,y)) \land \forall z (P(x,z))\\
+\equiv  \forall x (P(x,g(h(x))) \lor P(z,h(x))) \land \forall z (P(x,z))
+= \psi'', h(x) = y\\
+$
+\newpage
+\subsection{Genetik}
+\subsubsection\
+Struktur A\\
+(i)\\
+Grundmenge ist die Gesamte Affenbevoelkerung seit eintreten der Krankheit.\\
+$K^A$ unaer und enthaelt alle kranken Tiere\\
+$W^A$ unaer und enthaelt alle weiblichen Tiere\\
+$J^A$ zweistellig und enthaelt Tupel mit jedem Tier und jeweils einem Seiner Nachkommen\\
+Tier t mit Nachkommen $j_1, ... , j_n$ hat die Tupel $(t,j_1), ... , (t,j_n)$\\
+$E^A$ zweistellig und enthaelt Tupel mit jedem Tier und jeweils einem seiner direkten Kinder\\
+Tier t mit kindern $k_1, ... , k_n$ hat die Tupel $(t,k_1), ... , (t,k_n)$\\
+\\
+(ii)\\
+m(t) ordnet jedem Tier t seine Mutter zu\\
+\\
+(iii)\\
+o ist der erste kranke Affe\\
+\subsubsection\
+$
+\varphi_1 = \forall t (
+                K(t) \rightarrow \exists w (
+                   (m(m(w)) = m(m(m(t))) \lor m(w) = m(m(m(t)))) \land W(w) \land K(w)
+                )
+            )\\ 
+\varphi_2 = \forall m, v, k(
+                E(m,k) \land (
+                    K(m) \rightarrow \exists g ((g=k) \lor E(m,g) \land K(g))
+                ) \lor (
+                E(v,k) \land (
+                    K(v) \rightarrow \exists g (((g=k) \lor E(v,g)) \land K(g))
+                )
+            )\\
+\varphi_3 = \forall m, v, t(
+                (\neg J(o,m) \land \neg J(o,v)) \rightarrow \neg K(t)
+            )\\
+$
+\subsubsection\
+$
+\varphi_1 = \forall t (
+                K(t) \rightarrow \exists w (
+                   (m(m(w)) = m(m(m(t))) \lor m(w) = m(m(m(t)))) \land W(w) \land K(w)
+                )
+            )\\ 
+\equiv      \forall t (
+                \neg K(t) \lor \exists w (
+                   (m(m(w)) = m(m(m(t))) \lor m(w) = m(m(m(t)))) \land W(w) \land K(w)
+                )
+            )
+= \varphi_1'\\
+\\
+\varphi_2 = \forall m, v, k(
+                E(m,k) \land (
+                    K(m) \rightarrow \exists g ((g=k) \lor E(m,g) \land K(g))
+                ) \lor (
+                E(v,k) \land (
+                    K(v) \rightarrow \exists g (((g=k) \lor E(v,g)) \land K(g))
+                )
+            )\\
+\equiv      \forall m, v, k(
+                E(m,k) \land (
+                    \neg K(m) \lor \exists g ((g=k) \lor E(m,g) \land K(g))
+                ) \lor (
+                E(v,k) \land (
+                    \neg K(v) \lor \exists g (((g=k) \lor E(v,g)) \land K(g))
+                )
+            )
+= \varphi_2'\\
+\\
+\varphi_3 = \forall m, v, t(
+                (\neg J(o,m) \land \neg J(o,v)) \rightarrow \neg K(t)
+            )\\
+\equiv      \forall m, v, t(
+                \neg (\neg J(o,m) \land \neg J(o,v)) \lor \neg K(t)
+            )\\
+\equiv      \forall m, v, t(
+                J(o,m) \lor J(o,v) \lor \neg K(t)
+            )
+= \varphi_3'\\
+$
+\end{document}
