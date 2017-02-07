@@ -1,0 +1,93 @@
+\documentclass{article}
+\author{Max Springenberg}
+\title{Logik TUT 8}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\setcounter{section}{8}
+
+\begin{document}
+\maketitle
+\newpage
+
+\subsection{Signaturen, Teilformeln, freie und gebundene Vriablen}
+\subsubsection\
+(i)\\
+Signatur:\\
+$\{R,S,g,f\}$\\
+\\
+atomare Teilformeln:\\
+$R(x,y), S(x,y,z)$\\
+\\
+Grundterme:\\
+$a, z$\\
+\\
+Terme:\\
+Grundterme und $g(a), x, y, f(z)$\\
+\\
+freie Variablen:\\
+a in $\exists x R(g(a),x)$, $\forall y (... \lor R(x,a))$\\
+rest ist stets gebunden\\
+\\
+(ii)\\
+Signatur:\\
+$\{P,Q,g,f\}$\\
+\\
+atomare Teilformeln:\\
+$P(x), Q(x,y)$\\
+\\
+Grundterme:\\
+$f(x), y, z, x$\\
+\\
+Terme:\\
+Grundterme und $g(f(x)), f(y), g(z), c$\\
+\\
+freie Variablen:\\
+x in $P(x)$\\ 
+x, y in $\exists z (... \land Q(g(f(x))), y)$\\
+z, c in $\exists x \forall y (Q(y, g(z)) \lor ... \lor P(c))$\\
+\subsubsection\
+(i) x wird nicht benutzt\\
+\\
+(ii) R ist nur zweistellig\\
+\\
+(iii) $\checkmark$\\
+\\
+(iv) Relationssymbole koennen nicht verschachtelt werden.\\
+\\
+(v) c wird nicht in R benutzt\\
+\\
+(vi) keine Formel, aber ein Term\\
+\newpage
+\subsection{Bundesliga}
+\subsubsection\
+Die Beispiele zu den jeweiligen Mengen aus der Aufgabenstellung sollten genuegen.
+Es waere meines Erachtens nicht sonderlich sinnvoll Spieltage und Mannschaften 
+fuer die ganze Bundesliga-Saison rauszusuchen.\\
+\subsubsection\
+(Die alternativen Schreibweisen werden nicht benutzt, waeren aber intuitiver...)
+$
+(i)\ \forall t, m(S(t) \land M(m) \land (T(t,s,m) \rightarrow T(t,d,m))\\
+$alkternativ:\\$
+\forall t \in S^A, m \in M^A (T(t,s,m) \rightarrow T(t,d,m))\\
+\\
+(ii)\ \forall m(M(m) \land T(l,d,m))\\
+$alkternativ:\\$
+\forall m \in M^A (T(l,d,m))\\
+\\
+(iii)\ 
+\forall m   (
+                M(m) \land (T(l,s,m) \rightarrow (
+                    T(e,s,m) \land \exists t (S(t) \land (t \neq e \land T(t,s,m)
+                )
+            )\\
+$alkternativ:\\$
+\forall m \in M^A(T(l,s,m) \rightarrow (T(e,s,m) \land \exists t \in S^A (t \neq e \land T(t,s,m))))\\
+$
+\subsubsection\
+(i) Dortmund und Schalke sind Mannschaften 
+    und eine Mannschaft ist genau dann eine Mannschaft, wenn sie kein Spieltag ist (???)\\
+(ii) Wenn Dortmund an jedem Spieltag vor Schalke ist, dann wird Schalke letzter.\\
+(iii) Wenn eine Mannschaft an einem Spieltag vor allen anderen steht, 
+      dann steht sie am kommendem Spieltag vor mindestens einer Mannschaft.\\
+\end{document}
