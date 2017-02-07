@@ -1,0 +1,93 @@
+\documentclass{article}
+\author{Max Springenberg}
+\title{Logik TUT 7}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\setcounter{section}{7}
+
+\begin{document}
+\maketitle
+\newpage
+
+\subsection{Kripkestrukturen}
+$
+\varphi_1 = \Diamond K \rightarrow \Box B\\
+\varphi_2 = \Diamond \neg K \rightarrow \Box K\\
+\varphi_3 = \Diamond \Diamond (K \rightarrow B)\\
+$
+\subsubsection\
+gestrichen werden muessen:\\
+$
+1:\ (3,6), (3,7)\\
+2:\ (2,6), (2,8), (4,6), (4,8)\\
+3:\ (2,7), (4,7), (5,7)\\
+$
+\subsubsection\
+$
+\varphi =   (\Diamond K \rightarrow \Box B) \land
+            (\Diamond \neg K \rightarrow \Box K) \land
+            (\Diamond \Diamond (K \rightarrow B))\\
+$
+\subsubsection\
+NNF bilden:\\
+$
+\varphi =   (\Diamond K \rightarrow \Box B) \land
+            (\Diamond \neg K \rightarrow \Box K) \land
+            (\Diamond \Diamond (K \rightarrow B))\\
+\equiv      (\neg \Diamond K \lor \Box B) \land
+            (\neg \Diamond \neg K \lor \Box K) \land
+            (\Diamond \Diamond (\neg K \lor B))\\
+\equiv      (\Box (\neg K \lor B)) \land 
+            (\Box (K \lor B)) \land
+            (\Diamond \Diamond (\neg K \lor B))
+= \varphi'\\
+$
+\\
+Tableaukalkuel:\\
+$
+\begin{matrix}
+        &&&s1, \varphi'\\
+        &&&|\\
+        &&&s1, (\Box (\neg K \lor B))\\
+        &&&|\\
+        &&&s1, (\Box (K \lor B))\\
+        &&&|\\
+        &&&s1, (\Diamond \Diamond (\neg K \lor B))\\
+        &&&|\\
+        &&&(s1, s2) \in E\\
+        &&&|\\
+        &&&s2, (\Diamond (\neg K \lor B))\\
+        &&&|\\
+        &&&s2, (K \lor B)\\
+        &&&l,r\\
+        &l:\\
+        &s2, K\\
+        &|\\
+        &s2, (\neg K \lor B)\\
+        &l,r\\
+        l:\\
+        s2, \neg K\\
+        \lightning\\
+        &&r:\\
+        &&s2, B\\
+        &&\checkmark\\
+        &&&&&r:\\
+        &&&&&s2, B\\
+        &&&&&|\\
+        &&&&&s2, (\neg K \lor B)\\
+        &&&&&l,r\\
+        &&&&l:\\
+        &&&&s2, \neg K\\
+        &&&&\checkmark\\
+        &&&&&&r:\\
+        &&&&&&s2, B\\
+        &&&&&&\checkmark\\
+\end{matrix}
+$
+damit gilt $B \in s2$ offensichtlich.\\
+\newpage
+\subsection{Kripkestrukturen}
+siehe TUT6 A2\\
+gleiche Aufgabenstellung ...\\
+\end{document}
