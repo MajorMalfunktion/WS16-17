@@ -1,0 +1,110 @@
+\documentclass{article}
+\author{Max Springenberg}
+\title{Logik TUT 11}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\usepackage{mathtools}
+\setcounter{section}{11}
+
+\begin{document}
+\maketitle
+\newpage
+
+\subsection{Unifikation}
+\subsubsection\
+$
+|L'| = 2\\
+A_1 = R(z,f(a))\\
+A_2 = R(g(u),u)\\
+\\
+z_1 = z, z_2 = g\\
+\sigma {z \mapsto g(u)}\\
+\\
+|L'| = 2\\
+\\
+A_1 = R(g(u),f(a))\\
+A_2 = R(g(u),u)\\
+z_1 = f(a), z_2 = u\\
+\sigma {u \mapsto f(a)}\\
+\\
+|L'| = 1\\
+L'\{R(g(u),f(a))\}\\
+$
+\subsubsection\
+$
+|L'| = 2\\
+A_1 = Q(b,f(y),h(u))\\
+A_2 = R(z,u,h(g(u)))\\
+\\
+z_1 = b, z_2 = z\\
+\sigma {z \mapsto b}\\
+\\
+|L'| = 2\\
+A_1 = Q(b,f(y),h(u))\\
+A_2 = R(b,u,h(g(u)))\\
+\\
+z_1 = f(y), z_2 = u\\
+\sigma {u \mapsto f(y)}\\
+\\
+|L'| = 2\\
+A_1 = Q(b,f(y),h(u))\\
+A_2 = R(b,f(y),h(g(u)))\\
+\\
+z_1 = f(u), z_2 = h(g(u))\\
+\lightning$ u in f(u)$\\
+$
+\subsubsection\
+$\lightning$ P mit unterschiedlicher Stelligkeit\\
+\newpage
+\subsection{Unerfuellbarkeit}
+$
+\begin{matrix*}[l]
+        P(c,g(c))                           & x \mapsto c\\
+        \neg P(c,g(c)), Q(f(g(c)),g(c))     & y \mapsto g(c), x \mapsto c\\
+        \neg Q(f(g(c),g(c)), R(f(g(c)),g(c))& x \mapsto f(g(c))i, z \mapsto g(c)\\
+        \neg R(f(g(c)),g(c))                & x,y \mapsto g(c)\\
+\end{matrix*}
+\\
+\\
+\begin{matrix*}[l]
+        \neg Q(f(g(c),g(c)) &$aus $\neg Q(f(g(c),g(c)), R(f(g(c)),g(c)),    &\neg R(f(g(c)),g(c))\\
+        Q(f(g(c)),g(c))     &$aus $\neg P(c,g(c)), Q(f(g(c)),g(c)),         &P(c,g(c))\\
+        \Box                &$aus $\neg Q(f(g(c),g(c)),                     &Q(f(g(c)),g(c))\\
+\end{matrix*}
+$
+\newpage
+\subsection{Tautalogien}
+Annahme Tautalogie, damit $\neg \varphi$ nicht erfuellbar\\
+$
+\neg \varphi =  \neg \neg(\forall x (P(x) \rightarrow R(f(x))) 
+                \land \forall x (R(f(x)) \rightarrow \neg R(x)) 
+                \land \exists y(R(y) \land P(y)))\\
+\equiv          \forall x (P(x) \rightarrow R(f(x))) 
+                \land \forall x (R(f(x)) \rightarrow \neg R(x)) 
+                \land \exists y(R(y) \land P(y))\\
+\equiv          \forall x (\neg P(x) \lor R(f(x))) 
+                \land \forall x (\neg R(f(x)) \lor \neg R(x)) 
+                \land \exists y(R(y) \land P(y))\\
+\equiv          \forall x((\neg P(x) \lor R(f(x))) \land (\neg R(f(x)) \lor \neg R(x)))
+                \land \exists y(R(y) \land P(y))\\
+\equiv          \forall x((\neg P(x) \lor R(f(x))) \land (\neg R(f(x)) \lor \neg R(x)))
+                \land (R(c) \land P(c))\\
+\equiv          \forall x((\neg P(x) \lor R(f(x))) 
+                \land (\neg R(f(x)) \lor \neg R(x))
+                \land (R(c) \land P(c)))\\
+\\
+\\
+\begin{matrix*}[l]
+        \neg P(c) \lor R(f(c))      &x \mapsto c\\
+        \neg R(f(c)) \lor \neg R(c) &x \mapsto c\\
+\end{matrix*}
+\\
+\begin{matrix*}[l]
+        R(c) \lor R(f(c))   &$aus $R(c) \land P(c))), \neg P(c) \lor R(f(c))\\
+        \Box                &$aus $R(c) \lor R(f(c)), \neg R(f(c)) \lor \neg R(c)\\
+\end{matrix*}
+$
+\\
+damit Tautalogie\\
+\end{document}
