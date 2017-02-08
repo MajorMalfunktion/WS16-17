@@ -1,0 +1,110 @@
+\documentclass{article}
+\author{Max Springenberg}
+\title{Logik TUT 10}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\usepackage{mathtools}
+\setcounter{section}{10}
+
+\begin{document}
+\maketitle
+\newpage
+
+\subsection{Normalformen}
+$
+\begin{matrix*}[l]
+        \psi =  \forall x' \exists y \exists y' \forall z'((P(x', g(y)) \lor P(z,y') \land P(x,z')))\\
+        \equiv  \forall x' \exists y \exists y' \forall z'((P(x', g(y)) \lor P(k,y') \land P(c,z')))    &$x, z frei$\\
+        \equiv  \forall x' \forall z'((P(x', g(f(x'))) \lor P(k,h(x')) \land P(c,z')))                  &f(y) = h(y') = x'\\
+        = \psi'\\
+\end{matrix*}\\
+\\
+$als Matrixklauselform:\\$
+\begin{matrix*}[l]
+        \{\\
+        &       \{P(x',g(f(x')), P(k,h(x'))\},\\
+        &       \{P(c,z')\}\\
+        \}\\
+\end{matrix*}\\
+$
+\newpage
+\subsection{Grundresolution}
+als Matrixklauselform:\\
+$
+\begin{matrix*}[l]
+        \{\\
+        &       \{Q(y,x)\},\\
+        &       \{\neg Q(x,y), \neg Q(x,f(a)), P(g(b),f(a))\}\\
+        &       \{R(y)\},\\
+        &       \{\neg P(x,y), \neg R(x), \neg R(g(f(b)))\}\\
+        \}\\
+\end{matrix*}\\
+\\
+$Herbrand Universum:\\$
+H(\varphi) = \{f(a),g(b),f(f(b)),...\}\\
+\\
+\begin{matrix*}[l]
+        \{\\
+        &       \{Q(b,a)\},                                             & y \mapsto b, x \mapsto a\\
+        &       \{Q(b,f(a))\},                                          & y \mapsto b, x \mapsto f(a)\\
+        &       \{\neg Q(b,a), \neg Q(b,f(a)), P(g(b),f(a))\},          & x \mapsto b, y \mapsto a\\
+        &       \{R(g(b))\}                                             & y \mapsto g(b)\\
+        &       \{R(g(f(b)))\},                                         & y \mapsto g(f(b))\\
+        &       \{\neg P(g(b),f(a)), \neg R(g(b)), \neg R(g(f(b)))\},   & x \mapsto g(b), y \mapsto f(a)\\
+        &       ...\\
+        \}\\
+\end{matrix*}\\
+\\
+\begin{matrix*}[l]
+        \{\neg P(g(b),f(a)), \neg R(g(f(b)))\}  & $aus $\{\neg P(g(b),f(a)), \neg R(g(b)), \neg R(g(f(b)))\},& \{R(g(b))\}\\
+        \{\neg P(g(b),f(a))\}                   & $aus $\{\neg P(g(b),f(a)), \neg R(g(f(b)))\},             &\{R(g(f(b)))\}\\
+        \{\neg Q(b,f(a)), P(g(b),f(a))\}        & $aus $\{\neg Q(b,a), \neg Q(b,f(a)), P(g(b),f(a))\},      &\{Q(b,a)\}\\
+        \{P(g(b),f(a))\}                        & $aus $\{\neg Q(b,f(a)), P(g(b),f(a))\},                   &\{Q(b,f(a))\}\\
+        \Box                                    & $aus $\{P(g(b),f(a))\},                                   &\neg \{P(g(b),f(a))\}\\
+\end{matrix*}\\
+$
+\newpage
+\subsection{Grundresolution 2}
+\subsubsection\
+Praenexform:\\
+$
+\varphi =   \exists y[P(y) \rightarrow \forall z \neg Q(z,f(y))] \land \forall z[\exists y Q(y,f(z)) \land P(z)]\\
+\equiv      \exists y[\neg P(y) \lor \forall z \neg Q(z,f(y))] \land \forall z[\exists y Q(y,f(z)) \land P(z)]
+= \varphi'\\
+\\
+$SkolemForm:\\$
+\varphi' =  \exists y[\neg P(y) \lor \forall z \neg Q(z,f(y))] \land \forall z[\exists y Q(y,f(z)) \land P(z)]\\
+\equiv      [\neg P(c) \lor \forall z \neg Q(z,f(c))] \land \forall z[Q(g(z),f(z)) \land P(z)]\\
+\equiv      \forall z[(\neg P(c) \lor \neg Q(z,f(c))) \land Q(g(z),f(z)) \land P(z)]
+= \varphi''\\
+\\
+$Matrixklauselform:\\$
+\begin{matrix*}[l]
+        \{\\
+        &       (\neg P(c) \lor \neg Q(z,f(c)),\\
+        &       Q(g(z),f(z)),\\
+        &       P(z)\\
+        \}\\
+\end{matrix*}\\
+$
+\subsubsection\
+Herbrand Universum:\\
+$
+H(\varphi'') = \{c, f(c), g(c),...\}\\
+\\
+\begin{matrix*}[l]
+        \{\\
+        &       (\neg P(c) \lor \neg Q(g(c),f(c))), & z \mapsto g(c)\\
+        &       Q(g(c),f(c)),                       & z \mapsto c\\
+        &       P(c)                                & z \mapsto c\\
+        \}\\
+\end{matrix*}\\
+\\
+\\
+\begin{matrix*}[l]
+        \{\neg Q(g(c),f(c))\}   & $aus $\{\neg P(c) \lor \neg Q(g(c),f(c)\},   & \{P(c)\}\\
+        \Box                    & $aus $\{\neg Q(g(c),f(c))\},                 &\{Q(g(c),f(c))\}\\
+\end{matrix*}\\
+$
+\end{document}
