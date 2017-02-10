@@ -1,0 +1,39 @@
+\documentclass{article}
+\author{Max Springenberg}
+\title{Logik TUT 12}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\usepackage{mathtools}
+\setcounter{section}{12}
+
+\begin{document}
+\maketitle
+\newpage
+
+\subsection{Prolog}
+\subsubsection\
+$
+M(x)\\
+K(x,y)\\
+\\
+((M(x) \land W(y) \land V(x,y)) \rightarrow V(x,y))\\
+$
+\subsubsection\
+Tim fragt nur ab, ob es in der Menge an Fakten bereits ein 
+Maedchen gibt, mit dem er verglichen kleiner ist.\\
+\\
+kleiner\_als(X,Z) :- fakt\_kleiner\_als(X,Y), fakt\_kleiner\_als(Y,Z)\\
+\subsubsection\
+liegt\_zwischen(X,Y,Z) :- kleiner\_als(X,Z), kleiner\_als(Z,Y)\\
+\subsubsection\
+? :- kleiner\_als(Ben,Z)\\
+Mir fehlt jegliche Motivation einen gesamten baum mit LaTeX zu schreiben.\\
+\newpage
+\subsection{Mehr Prolog}
+\begin{tabular}{l|l}
+        liegen\_zwischen(X,Y,Z) :- liegt\_zwischen(X,Y,Z)   &name\\
+        liegen\_zwischen(X,Y,Z) :- liegt\_zwischen(X,Y,Z'),
+                        liegen\_zwischen(X,Y,Z')            &name(name,+++(+++,---,(---,......)))\\
+\end{tabular}\\
+\end{document}
