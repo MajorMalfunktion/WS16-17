@@ -157,5 +157,79 @@ $
 \newpage
 \subsection{Inversen von Matrizen}
 \subsubsection\
-
+$
+A, B \in K^n\\
+A =
+\begin{pmatrix}
+        a_{11}&...&a_{1n}\\
+        ...&...&...\\
+        a_{m1}&...&a_{mn}\\
+\end{pmatrix}\\
+B =
+\begin{pmatrix}
+        b_{11}&...&b_{1n}\\
+        ...&...&...\\
+        b_{m1}&...&b_{mn}\\
+\end{pmatrix}\\
+A * B =
+\begin{pmatrix}
+        a_{11} * b_{11}&...&a_{1n} * b_{m1}\\
+        ...&...&...\\
+        a_{m1} * b_{1n}&...&a_{mn} * b_{mn}\\
+\end{pmatrix}\\
+B * A =
+\begin{pmatrix}
+        b_{11} * a_{11}&...&b_{1n} * a_{m1}\\
+        ...&...&...\\
+        b_{m1} * a_{1n}&...&b_{mn} * a_{mn}\\
+\end{pmatrix}\\
+$
+\\
+Folglich gilt, dass wenn\\
+$
+    \begin{pmatrix}
+            a_{11} * b_{11}&...&a_{1n} * b_{m1}\\
+    \end{pmatrix}\\
+=   \begin{pmatrix}
+            1&...&0\\
+    \end{pmatrix}\\
+$\\
+\\dann auch\\$
+    \begin{pmatrix}
+            b_{11} * a_{11}
+            ...\\
+            b_{m1} * a_{1n}
+    \end{pmatrix}\\
+=   \begin{pmatrix}
+            1&...&0\\
+    \end{pmatrix}^t\\
+$
+etc. ...\\
+\\
+Es findet lediglich eine Spiegelung an der Diagonalen statt.\\
+Da diese in $E^{n \times n}$ als einzige mit Werten initialisiert ist,
+gilt allgemeingueltig $A^n * B^n = B^n * A^n$, wenn $A^n * B^n = E^{n \times n}$
+\subsubsection\
+$
+A =
+\begin{pmatrix}
+        1&0&0\\
+        0&1&0\\
+\end{pmatrix}\\
+B = 
+\begin{pmatrix}
+        1&0\\
+        0&1\\
+        a&b\\
+\end{pmatrix}\\
+a, b \in K\\
+A \in K^{2 \times 3}, B \in K^{3 \times 2}\\
+A * B = E_2\\
+B * A =
+\begin{pmatrix}
+        1&0&0\\
+        0&1&0\\
+        a&b&0\\
+\end{pmatrix} \neq E_3\\
+$
 \end{document}
