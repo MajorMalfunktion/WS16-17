@@ -1,0 +1,161 @@
+\documentclass{article}
+\title{MafI 1 UB07}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\usepackage[onehalfspacing]{setspace}
+
+\onehalfspacing
+\setcounter{section}{12}
+\begin{document}
+\maketitle
+\newpage
+
+\subsection{Invertieren von matrizen}
+\subsubsection\
+$
+\begin{pmatrix}
+        1 &-1& 2&|& 1& 0& 0\\
+        -3& 2& 4&|& 0& 1& 0\\
+        2 &-3& 9&|& 0& 0& 1\\
+\end{pmatrix}\\
+\begin{pmatrix}
+        1 &-1& 2&|& 1& 0& 0\\
+        0 &-1&10&|& 3& 1& 0\\
+        0 &-1& 5&|&-2& 0& 1\\
+\end{pmatrix}\\
+\begin{pmatrix}
+        1 &-1& 2&|& 1& 0& 0\\
+        0 &-1&10&|& 3& 1& 0\\
+        0 & 0&-5&|&-5&-1& 1\\
+\end{pmatrix}\\
+\begin{pmatrix}
+        1 &-1& 2&|& 1& 0& 0\\
+        0 &-1& 0&|&-7&-1& 2\\
+        0 & 0&-5&|&-5&-1& 1\\
+\end{pmatrix}\\
+\begin{pmatrix}
+        1 &-1& 2&|& 1& 0& 0\\
+        0 & 1& 0&|& 7& 1&-2\\
+        0 & 0& 1&|& 1&\frac{1}{5}&\frac{-1}{5}\\
+\end{pmatrix}\\
+\begin{pmatrix}
+        1 & 0& 0&|& 6&\frac{3}{5}&-\frac{12}{5}\\
+        0 & 1& 0&|& 7& 1&-2\\
+        0 & 0& 1&|& 1&\frac{1}{5}&\frac{-1}{5}\\
+\end{pmatrix}\\
+$
+\\
+damit ist 
+$A^{-1} = 
+\begin{pmatrix}
+        6&\frac{3}{5}&-\frac{12}{5}\\
+        7& 1&-2\\
+        1&\frac{1}{5}&\frac{-1}{5}\\
+\end{pmatrix}\\
+$\\
+\subsubsection\
+$
+A' = 
+\begin{pmatrix}
+        1 &-1& 2\\
+        -3& 2& 4\\
+        2 &-3& 4\\
+\end{pmatrix}\\
+\\
+det(A') =    (1*2*4) + (-1*4*2) + (2*3^2) 
+            -(2^3) - (-3*4*1) - (4*-3*-1)\\
+        =   8 - 8 + 18 - 8 + 12 - 12\\
+        =   10 \neq 0\\
+$
+\\
+damit ist $A'$ invertierbar\\
+\\
+\\
+z.z.: $A'$ auch ueber $\mathbb{Z}_5$ invertierbar\\
+$
+\begin{pmatrix}
+        1 &-1& 2&|& 1& 0& 0\\
+        -3& 2& 4&|& 0& 1& 0\\
+        2 &-3& 4&|& 0& 0& 1\\
+\end{pmatrix}\\
+\begin{pmatrix}
+        1 &-1& 2&|& 1& 0& 0\\
+        0 &-1&10&|& 3& 1& 0\\
+        0 &-1& 0&|&-2& 0& 1\\
+\end{pmatrix}\\
+\begin{pmatrix}
+        1 & 0& 2&|& 3& 0&-1\\
+        0 & 0&10&|& 5& 1&-1\\
+        0 & 1& 0&|& 2& 0&-1\\
+\end{pmatrix}\\
+\begin{pmatrix}
+        1 & 0& 2&|& 3& 0&-1\\
+        0 & 0& 1&|&\frac{1}{2}&\frac{1}{10}&\frac{-1}{10}\\
+        0 & 1& 0&|& 2& 0&-1\\
+\end{pmatrix}\\
+\\
+\{\frac{1}{2},\frac{1}{10},\frac{-1}{10}\} \notin \mathbb{Z}_5\\
+$
+damit existiert keine Inverse zu $A'$ ueber $\mathbb{Z}_5$\\
+\newpage
+\subsection{Lineare Abbildungen}
+\subsubsection\
+a)\\
+Gegenbeispiel:\\
+$
+v = (1,1,1)^t,\ \ w = (0,0,1)^t\\
+f(v+w)  = f(1,1,2)^t\\
+        = (3,3,2)^t \neq (3,3,1)^t\\
+        = (3,3,1)^t + (0,0,0)^t\\
+        = f(v) + f(w)\\
+$
+\\
+b)\\
+$
+f(v+w)  = (-l(v+w), (l(v+w) + l(2*(v+w))))\\
+        = ((-l(v) + -l(w)), (l(2v) + l(2w)))\\
+        = (-l(v), l(2v)) + (-l(w), l(2w))\\
+        = f(v) + f(w)\\
+\\
+f(s*v)  = (-l(s*v), (l(s*v) + l(s*2*v)))\\
+        = (s*-l(s*v), (s*l(v) + s*l(2*v)))\\
+        = s * f(v)\\
+$
+\subsubsection\
+
+\newpage
+\subsection{Basistransformation}
+\subsubsection\
+$
+    [\varphi]_{E_3} 
+=   \{
+        (1,2)^t, (2,3)^t, (3,4)^t
+    \}\\
+    _{E_2}[\varphi]_{E_3}
+=   \{
+        (1,2)^t, (2,3)^t, (3,4)^t
+    \}\\
+$
+\subsubsection\
+$
+B_3 =   \{
+            (1,2,-1)^t, (2,-1,2)^t, (3,1,-1)^t
+        \},\ 
+B_2 =   \{
+            (1,2)^t, (2,3)^t
+        \}\\
+\   [\varphi]_{B_3}
+=   \{
+        (2,4)^t, (6,9)^t, (2,5)^t
+    \}\\
+    _{B_2}[\varphi]_{B_3}
+=   \{
+        (2,0)^t, (0,3)^t, (4,-1)^t
+    \}\\
+$
+\newpage
+\subsection{Inversen von Matrizen}
+\subsubsection\
+
+\end{document}
