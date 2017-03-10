@@ -1,3 +1,4 @@
+{-# LANGUAGE GADTs #-}
 module Vlfun where
 
 data Tree a     = V a 
@@ -140,6 +141,75 @@ minimize :: Path -> Path
 minimize (p:ps @(q:r:s))| straight  p q r   = minimize $ p:r:s
                         | True              = p : minimize ps 
 minimize ps                                 = ps
+
+
+-- Folie 60 - 
+
+data Nat    = Zero
+            | Succ Nat
+            deriving (Show, Eq)
+
+data PosNat = One
+            | Succ' PosNat
+            deriving (Show, Eq)
+
+data Int'   = Zero'
+            | Plus PosNat
+            | Minus PosNat
+            deriving (Show, Eq)
+
+-- data Colist a = {split :: Maybe (a,Colist a)}
+data Colist a = Colist (Maybe (a, Colist a))
+
+nil :: Colist a
+nil = Colist Nothing
+
+--data Point' = Point {x,y,z :: Float}
+data Point' = Point' Float Float Float
+
+
+-- Folie 70 -
+
+--data Exp x  
+--        = Con Int
+--        | Var x
+--        | Sum [Exp x]
+--        | Prod [Exp x]
+--        | Exp x :- Exp x
+--        | Int :* Exp x
+--        | Exp x :^ Int
+
+data Exp x 
+        where
+        Con :: Int -> Exp x
+        Var :: x -> Exp x
+        Sum :: [Exp x] -> Exp x
+        Prod:: [Exp x] -> Exp x
+        (:-):: Exp x -> Exp x -> Exp x
+        (:*):: Int -> Exp x -> Exp x
+        (:^):: Exp x -> Int -> Exp x
+
+--data BExp x 
+--        = True_
+--        | False_
+--        | BVar x
+--        | Or [BExp x]
+--        | And [BExp x]
+--        | Not (BExp x)
+--        | Exp x := Exp x 
+--        | Exp x :<= Exp x
+
+data BExp x 
+        where
+        True_   :: BExp x
+        False_  :: BExp x
+        BVar    :: x -> BExp x
+        Or      :: [BExp x] -> BExp x
+        And     :: [BExp x] -> BExp x
+        Not     :: BExp x -> BExp x
+        (:=)    :: Exp x -> Exp x -> BExp x
+        (:<=)   :: Exp x -> Exp x -> BExp x
+
 ----------------------------------------------------------------------------
 
 foldTree ::  (a -> val) -> (a -> valL -> val) -> valL
