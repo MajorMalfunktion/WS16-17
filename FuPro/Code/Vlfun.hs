@@ -237,6 +237,23 @@ conEqInt (Con c) i = c == i
 
 intEqCon :: Int -> Exp x -> Bool
 intEqCon = flip conEqInt 
+
+-- Folien 81 -
+
+union :: Eq a => [a] -> [a] -> [a]
+union = foldl $ flip insert
+
+diff :: Eq a => [a] -> [a] -> [a]
+diff = foldl $ flip remove
+
+insert :: Eq a => a -> [a] -> [a]
+insert a s@(b:s')
+        | a == b    = s
+        | otherwise = b : insert a s'
+insert a _          = [a]
+
+remove :: Eq a => a -> [a] -> [a]
+remove = filter . (/=)
 ----------------------------------------------------------------------------
 
 foldTree ::  (a -> val) -> (a -> valL -> val) -> valL
