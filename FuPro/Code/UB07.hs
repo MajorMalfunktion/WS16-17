@@ -65,3 +65,19 @@ simplify e          = e
 simplify (e :- e')  = simplify e :- simplify e'
 
 --7.4
+
+type BStore x = x -> Bool
+
+bexp2store :: BExp x -> BStore x -> Store x -> Bool
+bexp2store e bst st 
+        = case e of 
+            True_   -> True 
+            False_  -> False
+            BVar x  -> bst x
+            Or es   -> or $ map f es
+            And es  -> and $ map f es
+            Not e   -> not $ f e
+            e :<= e'-> exp2store e st <= exp2store e' st
+            e := e' -> exp2store e st == exp2store e' st
+        where
+        f = (\x -> bexp2store x bst st)
