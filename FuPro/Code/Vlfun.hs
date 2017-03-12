@@ -210,6 +210,33 @@ data BExp x
         (:=)    :: Exp x -> Exp x -> BExp x
         (:<=)   :: Exp x -> Exp x -> BExp x
 
+type Store x = x -> Int
+
+exp2store :: Exp x -> Store x -> Int
+--exp2store (Con i)   _   = i
+--exp2store (Var x)   st  = st x
+--exp2store (Sum es)  st  = sum $ map (flip exp2store st) es
+--exp2store (Prod es) st  = product $ map (flip exp2store st) es
+--exp2store (e :- e') st  = exp2store e st - exp2store e' st
+--exp2store (e :* i)  st  = exp2store e st * i
+--exp2store (e :^ i)  st  = exp2store e st ^ i
+exp2store expr st 
+        = case expr of
+            Con i       -> i
+            Var x       -> st x
+            Sum es      -> sum $ map f es
+            Prod es     -> product $ map f es
+            e :- e'     -> f e - f e'
+            i :* e      -> i * f e 
+            e :^ i      -> f e ^ i
+        where
+        f = (flip exp2store st)
+
+conEqInt :: Exp x -> Int -> Bool
+conEqInt (Con c) i = c == i
+
+intEqCon :: Int -> Exp x -> Bool
+intEqCon = flip conEqInt 
 ----------------------------------------------------------------------------
 
 foldTree ::  (a -> val) -> (a -> valL -> val) -> valL
