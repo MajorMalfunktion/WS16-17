@@ -147,7 +147,7 @@ minimize ps                                 = ps
 
 data Nat    = Zero
             | Succ Nat
-            deriving (Show, Eq)
+--            deriving (Show, Eq)
 
 data PosNat = One
             | Succ' PosNat
