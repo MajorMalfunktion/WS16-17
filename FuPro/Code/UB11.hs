@@ -9,8 +9,8 @@ import Data.Maybe
 
 --A11.3
 
-saveDiv :: Int -> Int -> Maybe Int
-saveDiv x y
+safeDiv :: Int -> Int -> Maybe Int
+safeDiv x y
         = case y of 
             0 -> Nothing
             n -> Just $ div x n
@@ -33,4 +33,4 @@ f x y z = case (or [isNothing f1, isNothing f2]) of
             False   -> safeDiv (fromJust f1) (fromJust f2)
         where 
         f1 = safeSqrt x
-        f2 = maybe Nothing safeSqrt $ saveDiv y z
+        f2 = maybe Nothing safeSqrt $ safeDiv y z
