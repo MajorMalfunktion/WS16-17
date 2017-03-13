@@ -85,11 +85,13 @@ type ID = Int
 
 credit :: Int -> ID -> Bank -> Bank
 credit cred id (Bank kontos)
-        = Bank{
-        konten = updList konten id (kontos !! id){
-                kontostand = (kontostand $ kontos !! id) + cred
+        = Bank {
+                konten = updList kontos id (kontoPos){
+                kontostand = (kontostand kontoPos) + cred
         }
 }
+        where
+        kontoPos = kontos !! id
 
 debit :: Int -> ID -> Bank -> Bank
 debit deb 

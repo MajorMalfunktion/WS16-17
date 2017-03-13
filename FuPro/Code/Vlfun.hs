@@ -254,18 +254,27 @@ insert a _          = [a]
 
 remove :: Eq a => a -> [a] -> [a]
 remove = filter . (/=)
-----------------------------------------------------------------------------
 
-foldTree ::  (a -> val) -> (a -> valL -> val) -> valL
-                                -> (val -> valL -> valL) -> Tree a -> val
-foldTree f g _ _ (V a)      = f a
+-- Folien 109 - 
+
+foldBTree :: val -> (a -> val -> val -> val) -> Bintree a -> val
+foldBTree val f tree
+        = case tree of
+            Empty               -> val
+            Fork a left right   -> f a (foldBTree val f left) (foldBTree val f right)
+
+foldTree ::  (a -> val) -> (a -> valL -> val) -> valL -> (val -> valL -> valL) -> Tree a -> val
+foldTree f _ _   _ (V a)    = f a
 foldTree f g nil h (F a ts) = g a $ foldTrees f g nil h ts
 
-foldTrees ::  (a -> val) -> (a -> valL -> val) -> valL
-                                -> (val -> valL -> valL) -> [Tree a] -> valL
+foldTrees ::  (a -> val) -> (a -> valL -> val) -> valL -> (val -> valL -> valL) -> [Tree a] -> valL
 foldTrees _ _ nil _ []      = nil
-foldTrees f g nil h (t:ts)  = h (foldTree f g nil h t) 
-                                (foldTrees f g nil h ts)
+foldTrees f g nil h (t:ts)  = h (foldTree f g nil h t) (foldTrees f g nil h ts)
+
+-- Folien 114 -
+
+type State x = ([Int], Store x)
+---------------------------------------------------------------------------
 fib 0 = 1
 fib 1 = 1
 fib n = fib (n-1) + fib (n-2)
