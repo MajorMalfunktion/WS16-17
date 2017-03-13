@@ -4,18 +4,18 @@ import Vlfun
 --a7,1
 
 data Person 
-        = Person {  
-                name :: String, 
-                familyName :: String, 
-                age :: Int  
-        }
-        deriving(Show, Read)
+= Person {  
+        name :: String, 
+        familyName :: String, 
+        age :: Int  
+}
+deriving(Show, Read)
 
 data NewPoint
-        = NewPoint {
-                x :: Double,
-                y :: Double
-        }
+= NewPoint {
+        x :: Double,
+        y :: Double
+}
 
 getX :: NewPoint -> Double
 getX = x

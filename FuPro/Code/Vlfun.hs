@@ -44,7 +44,7 @@ f `hoch` n =    if n == 0
                 then id
                 else f.(f`hoch`(n - 1))
 
-updList :: [a] ->Int -> a -> [a]
+updList :: [a] -> Int -> a -> [a]
 updList s i a = take i s ++ a : drop (i + 1) s
 
 loop2 :: [a] -> [a] -> [a]
