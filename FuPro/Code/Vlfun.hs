@@ -274,6 +274,12 @@ foldTrees f g nil h (t:ts)  = h (foldTree f g nil h t) (foldTrees f g nil h ts)
 -- Folien 114 -
 
 type State x = ([Int], Store x)
+
+-- Folien 131 -
+
+type BRfun a = a -> [a]
+
+data Graph a = G [a] (BRfun a)
 ---------------------------------------------------------------------------
 fib 0 = 1
 fib 1 = 1
