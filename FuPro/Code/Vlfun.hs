@@ -280,6 +280,12 @@ type State x = ([Int], Store x)
 type BRfun a = a -> [a]
 
 data Graph a = G [a] (BRfun a)
+
+-- Folien 158 -
+--
+--class Monad m => MonadPlus m where
+--    mzero :: m a
+--    mplus :: m a -> m a -> m a
 ---------------------------------------------------------------------------
 fib 0 = 1
 fib 1 = 1
