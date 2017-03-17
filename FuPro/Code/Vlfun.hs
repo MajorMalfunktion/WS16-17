@@ -1,5 +1,6 @@
-{-# LANGUAGE GADTs #-}
+{-# LANGUAGE GADTs, LambdaCase #-}
 module Vlfun where
+import Control.Monad
 
 data Tree a     = V a 
                 | F a [Tree a]
@@ -282,11 +283,81 @@ type BRfun a = a -> [a]
 data Graph a = G [a] (BRfun a)
 
 -- Folien 158 -
+-- mzero ist eine gescheiterte Berechnung (verglischbar mit Bottom/ Null/ etc. ..)
+-- mplus ist eine simple monadische Funktion
 --
 --class Monad m => MonadPlus m where
 --    mzero :: m a
 --    mplus :: m a -> m a -> m a
----------------------------------------------------------------------------
+
+-- Folien 161 -
+
+--guard :: MonadPlus m  => Bool -> m ()
+--guard b | b         = return ()
+--        | otherwise = mzero
+
+creturn :: MonadPlus m => (a -> Bool) -> a -> m a
+creturn f a 
+        =   do
+            guard $ f a
+            return a
+
+when :: Monad m => Bool -> m () -> m()
+when bool mon
+        | bool      = mon
+        | otherwise = return ()
+
+(=<<) :: Monad m => (a -> m b) -> m a -> m b
+f =<< mon = mon >>= f
+
+(<=<) :: Monad m => (b -> m c) -> (a -> m b) -> (a -> m c)
+f <=< g = (>>= f) . g
+
+(>=>) :: Monad m => (a -> m b) -> (b -> m c) -> (a -> m c)
+(>=>) = flip (Vlfun.<=<)
+
+join :: Monad m => m (m a) -> m a
+join = (>>= id)
+
+-- Folien 163 -
+
+some, many :: MonadPlus m => m a -> m [a]
+some mon = do a <- mon; as <- many mon; return $ a:as
+many mon = mplus (some mon) (return [])
+
+msum :: MonadPlus m => [m a] -> m a
+msum = foldr mplus mzero
+
+sequence :: Monad m => [m a] -> m [a]
+sequence (m:ms) = do a <- m; as <- Vlfun.sequence ms; return $ a:as
+sequence _      = return []
+--        = \case (m:ms)  -> do a <- m; as <- Vlfun.sequence ms; return $ a:as
+--                []      -> return []
+
+sequence_ :: Monad m => [m a] -> m ()
+sequence_ = foldr (>>) $ return ()
+
+-- map und zipWith fuer Monaden:
+
+mapM :: Monad m => (a -> m b) -> [a] -> m [b]
+mapM f = Vlfun.sequence . map f
+
+mapM_ :: Monad m => (a -> m b) -> [a] -> m ()
+mapM_ f = Vlfun.sequence_ . map f
+
+zipWithM :: Monad m => (a -> b -> m c) -> [a] -> [b] -> m [c]
+zipWithM f as = Vlfun.sequence . zipWith f as
+
+zipWithM_ :: Monad m => (a -> b -> m c) -> [a] -> [b] -> m ()
+zipWithM_ f as = Vlfun.sequence_ . zipWith f as
+
+-- Folien 188 - 
+
+--instance Monad (Trans state) where
+--    return a    = T $ \st -> (a,st)
+--    T h >>= f   = T $ (\(a,st) -> runT (f a) st) . h
+
+-----------------------------------------------------------------------------
 fib 0 = 1
 fib 1 = 1
 fib n = fib (n-1) + fib (n-2)
