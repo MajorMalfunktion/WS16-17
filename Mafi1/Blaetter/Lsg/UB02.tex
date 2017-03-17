@@ -3,6 +3,7 @@
 \title{MafI 1 UB02}
 \usepackage{amssymb}
 \usepackage{amsmath}
+\usepackage{stmaryrd}
 \setcounter{section}{2}
 
 \begin{document}
@@ -18,20 +19,24 @@ kgV(n,m,x) =_{df} n|x \land m|x \land \forall y.(n|y \land m|y) \Rightarrow y \g
 $
 \subsubsection\
 $
-\forall n \in \mathbb{N}_{>2}. \exists p, p' \in P = \{2n - 1\}. 2n = p + p'\\
+\forall n \in \mathbb{N}_{>2}. 
+    \exists p, p' \in P = \{
+            \forall y. y|n' \Rightarrow y = n' | n' \in \mathbb{N}
+    \}. 
+        n = p + p'\\
 $
 \subsubsection\
 $
 \neg(   
         \exists e \in \mathbb{R}. 
-        e > 0 \land \forall n_0 \in \mathbb{N}.
-        \exists n \in \mathbb{N}.
-        n \geq n_0 \land \frac{1}{n} \geq e
+            e > 0 \land \forall n_0 \in \mathbb{N}.
+                \exists n \in \mathbb{N}.
+                    n \geq n_0 \land \frac{1}{n} \geq e
     )\\
 \equiv  \forall e \in \mathbb{R}.
-        e > 0 \Rightarrow \exists n_o \in \mathbb{N}.
-        \forall n \in \mathbb{N}.
-        (\geq n_0) \Rightarrow (\frac{1}{n} < e)\\
+            e > 0 \Rightarrow \exists n_o \in \mathbb{N}.
+                \forall n \in \mathbb{N}.
+                    (n \geq n_0) \Rightarrow (\frac{1}{n} < e)\\
 $
 \newpage
 \subsection{Relation}
@@ -44,13 +49,25 @@ R^{-1} \odot S = \{(4,5), (4,6), (6,5), (6,6)\}\\
 (R^{-1} \odot S) \odot T = \{(4,2), (4,6), (4,1), (4,5), (6,2), (6,6), (6,1), (6,5)\}\\
 $
 \subsubsection\
+
+nicht rechtseindeutig:\\
 $
-3|6 \land 3|9 \Rightarrow nicht\ rechtseindeutig\\
-3|6 \land 2|6 \Rightarrow nicht\ linkseindeutig\\
-1 \in \mathbb{N}
+1|1 \land 1|2\\
 $
-teilt alle Elemente von $\mathbb{N} \Rightarrow$ rechtstotal\\
-Es ist linkstotalitaet (leider keine Loesung)\\
+\\
+nicht linkseindeutig\\
+$
+1|2 \land 2|2\\
+$
+\\
+rechtstotal:
+$
+\forall n \in \mathbb{N}. 1|n\\
+$
+linkstotal:
+$
+\forall n \in \mathbb{N}. m|n\\
+$
 \subsubsection\
 $
 R = \emptyset = R^{-1}, A = \{1\}, I_A =\{(1,1)\} \\
@@ -97,4 +114,41 @@ Die Summen sind $\in \{1,..,955\}$\\
 \\
 Das Schubfachprinzip sagt, dass es keine injektive Funkt. gibt, die den Teilmengen Summen zuordnet.\\
 Somit muss es Teilmengen mit den selben Summen geben.
+\\
+\\
+\\
+Alternativ:\\
+\\
+Kontraposition wie folgt:
+\\
+$
+        \neg (\exists Y,Y' \subseteq X. sum(Y) = sum(Y'))\\
+\equiv  \forall Y,Y' \subseteq X. sum(Y) \neq sum(Y'))\\
+\\
+x \in X \Rightarrow x \in \{1,..,100\}\\
+$
+\\
+mit sum(A) definiert als:\\
+$
+A = \{a_0, .. ,a_n\}\\
+sum(A) := a_0 + .. + a_n\\
+$
+mit m,n:\\
+sei b() die Betragsfunktion aller Elemente in einer Menge A\\
+$
+n = x_0,\\
+m \geq 2 * b(X) + n\\
+$
+\\
+\\
+mit Y und Y' wie folgt definiert:\\
+$
+Y   = \{n, n+2, n+4, .. , (m-(n+4)), (m-(n+2)), (m-n)\}\\
+Y'  = \{(n+1), (n+3), (n+5), .. , (m-(n+5)), (m-(n+3)), (m-(n+1))\}\\
+$gilt:\\$
+Y \cap Y' = \emptyset\\
+sum(Y) = 5 * m = sum (Y') \lightning\ \\
+$
+dies gilt bereits fuer Mengen mit $(m-n)$ verschiedenen Elementen.\\
+in diesem Fall gitl $(m-n) = 2 * b(X) = 20$\ \\
 \end{document}
