@@ -337,7 +337,7 @@ data Graph a = G [a] (BRfun a)
 data GraphL a label = GL [a] (TRfun a label)
 
 -- Folien 131
-closureF, closureT, warshall :: Eq a => Graph a -> Graph a
+closureF, closureT{-, warshall -}:: Eq a => Graph a -> Graph a
 
 -- takes a Graph and 
 closureF (G nodes sucs) 
@@ -351,14 +351,14 @@ closureT (G nodes sucs)
         where
         sucs' = mul sucs $ add one sucs'
 
-warshall (G nodes sucs)
-        = G nodes sucs'
-        where
-        trans sucs a = fold2 update sucs nodes $ map f nodes 
-            where
-            f b | a elem (sucs b) = union (sucs b) (sucs a)
-                | otherwise       = sucs b
-        sucs'        = foldl trans sucs nodes
+--warshall (G nodes sucs)
+--        = G nodes sucs'
+--        where
+--        sucs'        = foldl trans sucs nodes
+--        trans sucs a = fold2 update sucs nodes $ map f nodes 
+--            where
+--            f b | a elem (sucs b) = union (sucs b) (sucs a)
+--                | otherwise       = sucs b
 
 -- Folien 158 -
 -- mzero ist eine gescheiterte Berechnung (verglischbar mit Bottom/ Null/ etc. ..)
