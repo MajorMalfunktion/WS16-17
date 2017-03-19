@@ -4,8 +4,22 @@ import Data.Maybe
 
 --A11.2
 
+-- the main idea is to check whether a node <- nodes 
+-- is an element of succ' in (closureF graph),
+-- which returns a Graph with a function that has an equal subset to a prior function
+-- therefore it determins whether it's cyclic
 isCyclic :: Eq a => Graph a -> Bool
-isCyclic graph = or $ map (elem headNode) nodes
+isCyclic graph = or $ map self nodes
+        where
+        -- generates closure = succ' as in closureF and uses closure in the self function
+        G nodes closure = closureF graph
+        self node       = elem node (closure node)
+
+undirected :: Eq a => Graph a -> Graph a
+undirected (G nodes sucs)
+        = G nodes sucs'
+        where
+        sucs' x = union (sucs x) [x' | x' <- nodes, elem x (sucs x')]
 
 --A11.3
 

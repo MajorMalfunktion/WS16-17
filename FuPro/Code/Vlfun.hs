@@ -337,14 +337,22 @@ data Graph a = G [a] (BRfun a)
 data GraphL a label = GL [a] (TRfun a label)
 
 -- Folien 131
+-- take a Graph and return a Graph with a changed (BRfun a) sucs'
 closureF, closureT{-, warshall -}:: Eq a => Graph a -> Graph a
 
--- takes a Graph and 
+-- returns a new (BRfun a) sucs', 
+-- of whom elements are a subset to a prior (BRfun a) sucs
 closureF (G nodes sucs) 
         = G nodes sucs'
         where
-        sucs' = fixpt le (mul sucs . add one) zero 
-        le sucs sucs' = all (liftM2 subset sucs sucs') nodes
+        -- phi adds the one element and multiplies BRfun 
+        phi = (mul sucs . add one)
+        -- the first element is the zero element
+        a = zero
+        sucs'           = fixpt le phi a
+        -- le takes two funtions and checks for all elements,
+        -- if their results are subsets
+        le sucs sucs''  = all (liftM2 subset sucs sucs'') nodes
 
 closureT (G nodes sucs)
         = G nodes sucs'
