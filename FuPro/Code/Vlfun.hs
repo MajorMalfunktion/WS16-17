@@ -1,4 +1,4 @@
-{-# LANGUAGE GADTs, LambdaCase #-}
+{-# LANGUAGE GADTs, LambdaCase, TypeSynonymInstances, FlexibleInstances #-}
 module Vlfun where
 import Control.Monad
 
@@ -44,6 +44,9 @@ hoch :: (a -> a) -> Int -> a -> a
 f `hoch` n =    if n == 0
                 then id
                 else f.(f`hoch`(n - 1))
+
+single :: a -> [a]
+single a = [a]
 
 updList :: [a] -> Int -> a -> [a]
 updList s i a = take i s ++ a : drop (i + 1) s
@@ -247,6 +250,12 @@ union = foldl $ flip insert
 diff :: Eq a => [a] -> [a] -> [a]
 diff = foldl $ flip remove
 
+subset :: Eq a => [a] -> [a] -> Bool
+subset s s' = all (flip elem s') s
+
+unionMap :: Eq b => (a -> [b]) -> [a] -> [b]
+unionMap f = foldl union [] . map f
+
 insert :: Eq a => a -> [a] -> [a]
 insert a s@(b:s')
         | a == b    = s
@@ -276,11 +285,80 @@ foldTrees f g nil h (t:ts)  = h (foldTree f g nil h t) (foldTrees f g nil h ts)
 
 type State x = ([Int], Store x)
 
--- Folien 131 -
+-- Folien 126 - 
+
+fixpt :: (a -> a -> Bool) -> (a -> a) -> a -> a
+fixpt le phi a
+        | le (phi a) a  = a
+        | otherwise     = fixpt le phi (phi a)
+
+-- Folien 130 -
+
+--liftM2 :: (b -> c -> d) -> (a -> b) -> (a -> c) -> a -> d
+--liftM2 operation f g x = operation (f x) (g x)
+
+-- dfining own Semiring class
+class Semiring r where
+    add, mul :: r -> r -> r
+    zero, one :: r
+
+-- instances for Bool and Int
+instance Semiring Bool where
+    add = (||); mul = (&&)
+    zero = False; one = True
+    
+instance Semiring Int where
+    add = (+); mul = (*)
+    zero = 0; one = 1
+
+-- Binary Relation
+type BinRel a = [(a,a)]
 
 type BRfun a = a -> [a]
 
+-- instances of Eq in Semiring for BRfun and TRfun
+
+instance Eq a => Semiring (BinRel a) where
+    add = union
+    mul r r' =  [(a,c) | (a,b) <- r, (b',c) <- r', b == b']
+    zero = []
+    one = undefined
+
+instance Eq a => Semiring (BRfun a) where
+    add sucs sucs' = liftM2 union sucs sucs'
+    mul sucs sucs' = unionMap sucs' . sucs
+    zero = const []; one = single
+--
+
+type TRfun a label = a -> [(a,label)]
+
 data Graph a = G [a] (BRfun a)
+
+data GraphL a label = GL [a] (TRfun a label)
+
+-- Folien 131
+closureF, closureT, warshall :: Eq a => Graph a -> Graph a
+
+-- takes a Graph and 
+closureF (G nodes sucs) 
+        = G nodes sucs'
+        where
+        sucs' = fixpt le (mul sucs . add one) zero 
+        le sucs sucs' = all (liftM2 subset sucs sucs') nodes
+
+closureT (G nodes sucs)
+        = G nodes sucs'
+        where
+        sucs' = mul sucs $ add one sucs'
+
+warshall (G nodes sucs)
+        = G nodes sucs'
+        where
+        trans sucs a = fold2 update sucs nodes $ map f nodes 
+            where
+            f b | a elem (sucs b) = union (sucs b) (sucs a)
+                | otherwise       = sucs b
+        sucs'        = foldl trans sucs nodes
 
 -- Folien 158 -
 -- mzero ist eine gescheiterte Berechnung (verglischbar mit Bottom/ Null/ etc. ..)
@@ -332,7 +410,7 @@ sequence :: Monad m => [m a] -> m [a]
 sequence (m:ms) = do a <- m; as <- Vlfun.sequence ms; return $ a:as
 sequence _      = return []
 --        = \case (m:ms)  -> do a <- m; as <- Vlfun.sequence ms; return $ a:as
---                []      -> return []
+--                _       -> return []
 
 sequence_ :: Monad m => [m a] -> m ()
 sequence_ = foldr (>>) $ return ()
@@ -350,6 +428,21 @@ zipWithM f as = Vlfun.sequence . zipWith f as
 
 zipWithM_ :: Monad m => (a -> b -> m c) -> [a] -> [b] -> m ()
 zipWithM_ f as = Vlfun.sequence_ . zipWith f as
+
+-- Folien 173 - 
+
+queens :: Int -> [[Int]]
+queens n = boardVals [1..n]
+
+boardVals :: [Int] -> [[Int]]
+boardVals [] = [[]]
+boardVals l  = [new | k <- l, val <- boardVals $ remove k l, let new = k : val, safe 1 new]
+
+safe :: Int -> [Int] -> Bool
+safe i (k:col:val)  = col - 1 /= k
+                    && col + 1 /= k
+                    && safe (i+1) (k:val)
+safe _ _            = True
 
 -- Folien 188 - 
 

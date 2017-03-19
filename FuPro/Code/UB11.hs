@@ -4,8 +4,8 @@ import Data.Maybe
 
 --A11.2
 
---isCyclic :: Eq a => Graph a -> Bool
---isCyclic 
+isCyclic :: Eq a => Graph a -> Bool
+isCyclic graph = or $ map (elem headNode) nodes
 
 --A11.3
 
