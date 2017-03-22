@@ -57,54 +57,73 @@ Damit sind diese Elemente auch in S.\\
         &3&2&5\\
         &&1\\
 \end{tabular}\\
+\\
+Die komplementaeren Elemente in Tupeln sind:\\
+$\{
+        (5,6), (3,10), (2,15), (1,30)
+\}$\\
+\\
+mit $\{(x_{n_0},y_{n_0}), ...\} \rightarrow^{Relationsoperator} \{x_{n_0}\ `Relationsoperator`\ y_{n_0}, ...\}$:\\
 $
-(3,2),(2,5),(3,5) \rightarrow^{\curlywedge} (1)\\
+ \{(5,6), (3,10), (2,15), (1,30)\} \rightarrow^{\curlywedge} \{1\}\\
+ \{(5,6), (3,10), (2,15), (1,30)\} \rightarrow^{\curlyvee} \{30\}\\
 $
 damit dann auch $1_B = 30, 0_B = 1$\\
 \subsubsection\
 z.z.:\\
 A abgeschlossen unter $(\curlywedge, \curlyvee)$\\
 \\
-(hatte keine Lust $\forall x, y \in A. (x \curlyvee y), \forall x, y \in A. (x \curlywedge y)$)
-zu zeigen\\
-Mit einer Art Lambda Ausdruck ueber Tupel fuer $(\curlywedge, \curlyvee)$:\\
+z.z.:\\
+$\forall x, y \in A. \exists (x \curlyvee y), \forall x, y \in A. \exists (x \curlywedge y))\\
+\\
+\\
+    \{(x_{n_0},y_{n_0}), ...\} \rightarrow^{Relationsoperator}\\
+=   \{(y_{n_0},x_{n_0}), ...\} \rightarrow^{Relationsoperator} \{x_{n_0}\ `Relationsoperator`\ y_{n_0}, ...\}\\
+a \in A\\
+\\
+\{(3,a)\} \rightarrow^{\curlyvee} \{(a)\},\\
+\{(30,a)\} \rightarrow^{\curlyvee} \{(30)\},\\
+\{(6,(a \neq 3)),(15,(a \neq 3))\} \rightarrow^{\curlyvee} \{(30)\},\\
+\\
+\{(3,a)\} \rightarrow^{\curlywedge} \{(3)\},\\
+\{(30,a)\} \rightarrow^{\curlywedge} \{(a)\},\\
+\{(6,(a \neq 30)),(15,(a \neq 30))\} \rightarrow^{\curlywedge} \{(3)\},\\
 $
-(6,15),(15,10),(6,10) \rightarrow^{\curlyvee} (30),\\
-(3,2) \rightarrow^{\curlyvee} (6),\\
-(2,5) \rightarrow^{\curlyvee} (10),\\
-(3,5) \rightarrow^{\curlyvee} (15),\\
-etc\ ...\\
-$
+\\
 Es folgt, dass A bzgl. $(\curlywedge, \curlyvee)$ abgeschlossen ist.\\
 \\
 z.z.:\\
 A ist distributiv\\
 \\
-es gilt: $A \subseteq B \land A$ abgeschlossen\\
+es gilt: $(A \subseteq B) \land A$ abgeschlossen\\
 damit ist A dann auch wie B distributiv\\
 \\
 z.z.:\\
 $
 \exists 0_A, 1_A \in A. 
-\forall x \in A \exists \bar x \in A. 
-x \curlywedge \bar x = 0_A \land x \curlyvee \bar x = 1_A\\
+    \forall x \in A \exists \bar x \in A. 
+        x \curlywedge \bar x = 0_A \land x \curlyvee \bar x = 1_A\\
 \\
 $
-Diese existieren mit
-$
-0_A = 3, 1_A = 30
+Diese existieren zu der Menge aller Komplementaeren Elemente:\\
+$S \subseteq A, S = \{(3,30), (6,15)\}\\$
 \\
-\bar 30  \in (B, \curlywedge, \curlyvee)\\
-\\
-    (30 \curlywedge \bar 30) \curlyvee 3 
-=   (1 \curlyvee 30)
-=   1 \curlyvee 3
-=   3\\
+wie bereits gezeigt:\\
 $
+\{(3,a)\} \rightarrow^{\curlywedge} \{(3)\},\\
+\{(6,(a \neq 30)),(15,(a \neq 30))\} \rightarrow^{\curlywedge} \{(3)\},\\
+\{(30,a)\} \rightarrow^{\curlyvee} \{(30)\},\\
+\{(6,(a \neq 3)),(15,(a \neq 3))\} \rightarrow^{\curlyvee} \{(30)\},\\
+$
+\\
+daraus folgt:\\
+$0_A = 3, 1_A = 30$
 \newpage
 \subsection{Vollstaendiger Verband}
 \subsubsection\
-(Assoziativitaet, Kommutativitaet, Absorption sind offensichtlich ...)\\
+Assoziativitaet, Kommutativitaet, Absorption sind offensichtlich\\ 
+\\
+\\
 Vollstaendigkeit:\\
 \\
 sei $X \subseteq A \times X$ eine Menge mit:\\
@@ -112,15 +131,15 @@ $
 X_A = \{a \in A | \exists b \in B. (a, b) \in X\}\\
 X_B = \{b \in B | \exists a \in A. (a, b) \in X\}\\
 $
+\\
 so gilt fuer $(a,b) \in X$ bel.:\\
+$(inf(X_A), inf(X_B)) \preceq (a,b)$, da \\
 $
-(inf(X_A), inf(X_B)) \preceq (a,b)
-$, da \\$
 inf(X_A, a) = inf(X_A)\\
 inf(X_B, b) = inf(X_B)\\
 $
 analog fuer sup...
 \newpage
-\subsubsection{Verband der Funktionen}
+\subsection{Verband der Funktionen}
 hier gabs keine Mitschriften
 \end{document}

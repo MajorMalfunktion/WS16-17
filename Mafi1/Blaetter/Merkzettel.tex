@@ -1,0 +1,78 @@
+\documentclass{article}
+\title{MafI 1 Merkzettel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\usepackage[onehalfspacing]{setspace}
+
+\onehalfspacing
+\begin{document}
+\maketitle
+\section{Gruppen}
+Eine Gruppe <Menge, Operant> gilt als solche, wenn sie:\\
+\begin{tabular}{ll}
+        Assoziativ          & $\rightarrow$ bzgl. Operant Assoziativ\\
+        neutrl. Element     & $\rightarrow$ bzgl. Operant neutrl. Element\\
+        inv. Element        & $\rightarrow$ bzgl. Operant inv. Element\\
+\end{tabular}\\
+ist.\\
+\subsection{Gruppenhomorphismen}
+Ein Gruppenhomorphismus ist Eine Funktionen h, fuer welche gilt:\\
+$
+h: <Menge,Operant> \rightarrow <Menge', Operant'>\\
+a,b \in Menge\\
+h(a\ `Operant`\ b) = h(a)\ `Operant`'\ h(b)\\
+\Rightarrow h(a^{-1}) = h(a)^{-1}\\
+$
+\\
+\section{Permutationen und Zyklen}
+Eine Permutationen laesst sich in Zyklenshreibweise darstellen.\\
+\\
+Die Permutaion $\sigma$ laesst sich wie folgt darstellen:\\
+normal:\\
+$
+\sigma = \begin{pmatrix}
+        1&2&3&4&5&6\\
+        2&3&4&5&1&6\\
+\end{pmatrix}
+\begin{matrix}
+        p_n\\
+        \downarrow\\
+        p_{n+1}\\
+\end{matrix}\\
+$
+\\
+Zyklenshreibweise:\\
+$
+\sigma = (12345)(6)\\
+$
+\\
+Rechenregel:\\
+$
+    \sigma_n \circ \sigma_{n+1} 
+=   \begin{pmatrix}
+        t & t'  & ...\\
+        b & d   & ...\\
+\end{pmatrix} \circ \begin{pmatrix}
+        c & a   & ...\\
+        t' & t  & ...\\
+\end{pmatrix}\\
+=   \begin{pmatrix}
+        a & c   & ...\\
+        b & d   & ...\\
+\end{pmatrix} = (abcd\ ...)\\
+$
+Vergleichbar mit Transitivitaet.\\
+\section{Verband}
+<V,Operator> ist dann ein Verband, wenn:\\
+\begin{tabular}{ll}
+        Reflexivitaet   &\\
+        Antisymetrie    &\\
+        Transitivitaet  &\\
+\end{tabular}\\
+gilt.\\
+\\
+\subsection{Vollstaendiger Verband}
+ein Verband ist vollstaendig, wenn:\\
+hinsichtlich des Infimums ein neutr. Element, inv. Element und Abgeschlossenhiet existiert.\\
+\end{document}
