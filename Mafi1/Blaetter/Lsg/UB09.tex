@@ -1,24 +1,143 @@
 \documentclass{article}
-\title{MafI 1 UB07}
+\title{MafI 1 UB09}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{stmaryrd}
 \usepackage[onehalfspacing]{setspace}
 
 \onehalfspacing
-\setcounter{section}{11}
+\setcounter{section}{9}
 \begin{document}
+\maketitle
+\newpage
 
+\subsection{Ringe, Ringhomorphismen}
+\subsubsection\
+$
+U = \Big\{ 
+        \begin{pmatrix}
+                a & b\\
+                0 & c\\
+        \end{pmatrix} 
+        | a,b,c \in \mathbb{R}
+\Big\}\\
+$
+\\
+z.z.:\\
+$<U,+,*>$ ist Unterring von $<R^{2 \times 2}, +, *>$\\
+\\
+Abgschlossenheit:\\
+$
+"+":\\
+\\
+u_1,u_2 \in U\\
+    u_1 + u_2 
+=   \begin{pmatrix}
+        a+a' & b+b'\\
+        0    & c+c'\\
+    \end{pmatrix}\\
+(i) \forall x,x' \in \mathbb{R}. x+x' \in \mathbb{R} \Rightarrow (u_1+u_2) \in U\\
+\\
+"*":\\
+\\
+    u_1 * u_2
+=   \begin{pmatrix}
+        a*a' & (a*b'+b*c')\\
+        0    & c*b'\\
+    \end{pmatrix}\\
+(ii) \forall x,x' \in \mathbb{R}. x*x' \in \mathbb{R} \land (i) \Rightarrow (u_1*u_2) \in U\\
+$
+\\
+neutrl. Element bzgl. "+":\\
+$
+e = \begin{pmatrix}
+        0&0\\
+        0&0\\
+\end{pmatrix}\\
+\\
+u \in U\\
+    e + u
+=   \begin{pmatrix}
+        a+0 & b+0\\
+        0+0 & c+0\\
+    \end{pmatrix}\\
+=   u\\
+$
+\\
+\\
+inv. Element v bzgl. "+":\\
+$
+u - v = e\\\Rightarrow 
+v = e - u\\\Rightarrow
+v = -u\\
+$
+\\
+\\
+neutrl. Element bzgl. "*":\\
+\\
+$
+E_2 = \begin{pmatrix}
+        1&0\\
+        0&1\\
+\end{pmatrix}\\
+\\
+    u * E_2
+=   \begin{pmatrix}
+        a & b\\
+        0 & c\\
+\end{pmatrix}\\
+$
+\subsubsection\
+bzgl. "+":\\
+\\
+$
+    h(u_1+u_2)
+=   h(\begin{pmatrix}
+        a+a' & b+b'\\
+        0    & c+c'\\
+    \end{pmatrix})\\
+=   a+a'\\
+=   h(\begin{pmatrix}
+        a & b\\
+        0 & c\\
+\end{pmatrix}) + h(\begin{pmatrix}
+        a' & b'\\
+        0  & c'\\
+\end{pmatrix})\\
+= h(u_1) + h(u_2)\\
+$
+\\
+bzgl. "*":\\
+$
+    h(u_1*u_2)
+=   h(\begin{pmatrix}
+        a*a' & (a*b'+b*c')\\
+        0    & c*c'\\
+    \end{pmatrix})\\
+=   a*a'\\
+=   h(\begin{pmatrix}
+        a & b\\
+        0 & c\\
+\end{pmatrix}) * h(\begin{pmatrix}
+        a' & b'\\
+        0  & c'\\
+\end{pmatrix})\\
+= h(u_1) * h(u_2)\\
+$
+\newpage
+\subsection{Ideale}
+\subsubsection\
+z.z.: $_n\mathbb{Z}$ ist Untergruppe
 \subsubsection\
 $
 _n\mathbb{Z} =^! I\\
 \\
 _n\mathbb{Z} \subseteq I:\\
-n * x \in \_n\mathbb{Z} \\
+n * x \in _n\mathbb{Z} \\
 n \in I \Rightarrow n * x \in I\\
 \\
 \\
-I \subseteq\_n\mathbb{Z}:\\
+I \subseteqr _n\mathbb{Z}:\\
 z \in I \Rightarrow \exists q,r. z = q * n + r\\
 \\
 Lemma von Bezout:\\
