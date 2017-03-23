@@ -5,6 +5,14 @@ import Control.Monad
 data Tree a     = V a 
                 | F a [Tree a]
 
+root :: Tree a -> a
+root (V a)  = a
+root (F a _)= a
+
+subtrees :: Tree a -> [Tree a]
+subtrees (F _ ts) = ts
+subtrees _        = []
+
 data BintreeL a = Leaf a 
                 | Bin a (BintreeL a)(BintreeL a)
 
@@ -444,13 +452,79 @@ queens n = boardVals [1..n]
 
 boardVals :: [Int] -> [[Int]]
 boardVals [] = [[]]
-boardVals l  = [new | k <- l, val <- boardVals $ remove k l, let new = k : val, safe 1 new]
+boardVals l  
+    = [new | 
+        k <- l, 
+        val <- boardVals $ remove k l, 
+        let new = k : val, 
+        safe 1 new]
 
 safe :: Int -> [Int] -> Bool
 safe i (k:col:val)  = col - 1 /= k
-                    && col + 1 /= k
-                    && safe (i+1) (k:val)
+                        && col + 1 /= k
+                        && safe (i+1) (k:val)
 safe _ _            = True
+
+type Qstate = ([Int], [Int])
+
+queensI :: Int -> [[Int]]
+queensI n = boardValsI ([1..n], [])
+
+boardValsI :: Qstate -> [[Int]]
+boardValsI 
+    = \case ([], val) -> [val]
+            (s, val)  -> concatMap 
+                            boardValsI
+                            [(remove k s, new) |
+                                k <- s, let new = k:val, safe 1 new]
+
+-- Folien 176 -
+
+queensM, queensIM :: Int -> [[Int]]
+queensM  n = boardValsM [1..n]
+queensIM n = boardValsIM ([1..n], [])
+
+boardValsM :: [Int] -> [[Int]]
+boardValsM 
+    = \case [] -> [[]]
+            ls ->   do
+                    k <- ls
+                    val <- boardValsM $ remove k ls
+                    let new = k:val 
+                    guard $ safe 1 new
+                    [new]
+
+boardValsIM :: Qstate -> [[Int]]
+boardValsIM 
+    = \case ([], val) -> [val]
+            (s,val) ->  do
+                        k <- s
+                        let new = k:val
+                        guard $ safe 1 new
+                        boardValsIM (remove k s, new)
+-- Folien 178
+
+class TreeC t where 
+    rootC :: t a -> a
+    subtreesC :: t a -> [t a]
+
+instance TreeC Bintree where
+    rootC (Fork a _ _)       = a
+    subtreesC Empty         = []
+    subtreesC (Fork _ t u)  = [t, u]
+
+instance TreeC BintreeL where
+    rootC (Leaf a)          = a
+    rootC (Bin a _ _)       = a
+    subtreesC (Leaf _)      = []
+    subtreesC (Bin _ t u)   = [t,u]
+
+instance TreeC Tree where
+    rootC = root
+    subtreesC = subtrees
+
+depthfirst, breadthfirst :: 
+    (TreeC, tMonadPlus m) => (a -> Bool) -> t a-> m a
 
 -- Folien 188 - 
 
@@ -458,7 +532,7 @@ safe _ _            = True
 --    return a    = T $ \st -> (a,st)
 --    T h >>= f   = T $ (\(a,st) -> runT (f a) st) . h
 
------------------------------------------------------------------------------
+----------------------------------------------------------------------
 fib 0 = 1
 fib 1 = 1
 fib n = fib (n-1) + fib (n-2)

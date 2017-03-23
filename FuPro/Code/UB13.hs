@@ -35,6 +35,6 @@ pointSwap
 pointDistance :: (Double, Double) -> PointMethod Double
 pointDistance (x',y')
     =   do
-        <- getX
+        x <- getX
         y <- getY
         return $ sqrt ((x' - x)^2 + (y' - y)^2)
