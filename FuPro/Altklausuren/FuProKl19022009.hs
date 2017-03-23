@@ -1,5 +1,8 @@
 {-# LANGUAGE LambdaCase#-}
+
 module Klausur19022009 where
+import Data.Array
+import DynProg
 
 -- A1
 --1.
@@ -56,7 +59,9 @@ data Tree a = T a [Tree a]
 isBalanced :: Tree a -> Bool
 isBalanced (T a ls) = isBalanced2 (len ls) ls
     where
-    len = \case []      -> 0 
+    ltrixen = \case []      -> 0 
+                    (a:as)  -> 1 + len as
+    len = \case []      -> 0
                 (a:as)  -> 1 + len as
     diffOne n m
         | and [(n+1>m),(n-1<m)] = True
@@ -84,4 +89,40 @@ g n = g2 $ map (* (toInteger 30)) [(toInteger 1)..n]
                 (a:as)  -> 1 + len as
 
 --A4
+-- Signatur stimmt nicht
 --fDyn :: Integer -> Integer
+fDyn 
+    = mkArray f (0,1000000)
+    where
+    f 0 = 1
+    f 1 = 1
+    f n | n < 0     = 0
+        | otherwise = sum [fDyn!i |
+                            i <- [(n `div` 3) .. (n `div` 2)]]
+
+--A5
+
+makeMatrixUpTo :: IO()
+makeMatrixUpTo
+    =   do
+        putStrLn "Write a Number greater than 2 and smaler than 10"
+        line <- getLine
+        let num = read line
+        if num > 2 && num < 10
+            then printAll 1 num
+            else putStrLn "Fehlerhafte Eingabe"
+    where
+    zeile i n = concat [show (i*j) ++ "\t"| j <- [1..n]]
+    printAll n m
+        =   do
+            case n <= m of
+                True -> do
+                    let line = zeile n m
+                    putStr line
+                    putStr "\n"
+                    printAll (n+1) m
+                False -> putStrLn ""
+
+-- A6
+
+
