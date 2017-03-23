@@ -1,3 +1,4 @@
+module Klausur02042009 where
 import Data.Array 
 --  A1.1
 --      foldr (\x (y,z) -> (y*z + x, z+x))(0,0) [1,1,2]
