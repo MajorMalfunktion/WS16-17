@@ -24,16 +24,17 @@ setY y = T $ \(x,_) -> ((),(x,y))
 
 --1.
 pointSwap :: PointMethod ()
-pointSwap = do
-            x <- getX
-            y <- getY
-            setX y
-            setY x
+pointSwap 
+    =   do
+        x <- getX
+        y <- getY
+        setX y
+        setY x
 
 --2.
 pointDistance :: (Double, Double) -> PointMethod Double
 pointDistance (x',y')
-        =   do
-            x <- getX
-            y <- getY
-            return $ sqrt ((x' - x)^2 + (y' - y)^2)
+    =   do
+        <- getX
+        y <- getY
+        return $ sqrt ((x' - x)^2 + (y' - y)^2)

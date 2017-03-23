@@ -13,9 +13,9 @@ inorderB = foldBTree [] (\a l r -> l ++ [a] ++ r)
 
 foldNat :: val -> (val -> val) -> Nat -> val
 foldNat nil f nat
-        = case nat of
-            Zero    -> nil
-            Succ n  -> f $ foldNat nil f n
+    = case nat of
+        Zero    -> nil
+        Succ n  -> f $ foldNat nil f n
 
 toInt :: Nat -> Int
 toInt = foldNat 0 (1+)
@@ -46,18 +46,18 @@ class Hash a where
 
 instance Hash a => Hash [a] where
     hash list
-            = case list of
-                []      -> 3 ^ 2
-                (a:as)  -> 3 * (3 + hash a) + hash as
+        = case list of
+            []      -> 3 ^ 2
+            (a:as)  -> 3 * (3 + hash a) + hash as
                 
 instance Hash Nat where
     hash nat 
-            = case nat of
-                Zero    -> 3
-                Succ n  -> 3 + hash n
+        = case nat of
+            Zero    -> 3
+            Succ n  -> 3 + hash n
 
 instance Hash a => Hash (Tree a) where
     hash tree
-            = case tree of
-                V a     -> 3 * (3 + hash a)
-                F a ls  -> 3 * (3 + hash a) + hash ls
+        = case tree of
+            V a     -> 3 * (3 + hash a)
+            F a ls  -> 3 * (3 + hash a) + hash ls

@@ -13,7 +13,12 @@ import Vlfun
 -- 12
 
 solutiolns :: [(Int,Int,Int)]
-solutiolns = [(x,y,z) | z <- [0..], x <- [0..z], y <- [0..z], 3 * x^2 + 2 * y + 1 == z]
+solutiolns 
+    = [(x,y,z) |
+        z <- [0..], 
+        x <- [0..z], 
+        y <- [0..z],    
+        3 * x^2 + 2 * y + 1 == z]
 
 --a6,2
 
@@ -27,14 +32,14 @@ c = Rat (Minus One) (Succ' One)
 
 indexNat :: [a] -> Nat -> a
 indexNat (a:as) (Succ n) 
-        | (Succ n) == Zero  = a
-        | otherwise         = indexNat as n
+    | (Succ n) == Zero  = a
+    | otherwise         = indexNat as n
 
 colistTake :: Int -> Colist a -> Colist a
 colistTake _ (Colist Nothing)   = Colist Nothing
 colistTake n (Colist (Just (a,b)))
-        | n > 0     = Colist (Just (a, colistTake (n-1) b))
-        | otherwise = Colist Nothing
+    | n > 0     = Colist (Just (a, colistTake (n-1) b))
+    | otherwise = Colist Nothing
 
 getX :: Point' -> Float
 getX (Point' x _ _) = x

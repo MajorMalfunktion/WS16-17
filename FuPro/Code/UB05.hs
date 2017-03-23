@@ -41,6 +41,6 @@ divisors n = [x | x <-[1..n], n `mod` x == 0]
 
 solutiolns :: [(Int, Int, Int)]
 solutiolns 
-        = [(x,y,z) |x <- l, y <- l, z <- l, 3 * x^2 + 2 * y + 1 == z]
-                where
-                l = [0..100]
+    = [(x,y,z) |x <- l, y <- l, z <- l, 3 * x^2 + 2 * y + 1 == z]
+    where
+    l = [0..100]

@@ -68,13 +68,13 @@ symDif as bs = union (diff as bs) (diff bs as)
 
 height :: Bintree a -> Int
 height tree
-        = case tree of
-            Empty        -> 0
-            (Fork _ l r) -> 1 + max (height l) (height r) 
+    = case tree of
+        Empty        -> 0
+        (Fork _ l r) -> 1 + max (height l) (height r) 
 
 isBalanced :: Bintree a -> Bool
 isBalanced tree
-        = case tree of
-            Empty        -> True
-            (Fork _ l r) -> (f l r <= 1) && isBalanced l && isBalanced r
-                where f = (\x y -> abs (height x - height y))
+    = case tree of
+        Empty        -> True
+        (Fork _ l r) -> (f l r <= 1) && isBalanced l && isBalanced r
+            where f = (\x y -> abs (height x - height y))

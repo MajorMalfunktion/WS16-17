@@ -5,32 +5,34 @@ import UB11
 --A12.1
 
 solutions, solutions' :: [(Int,Int,Int)]
-solutions = do
-            z <- [0..50]
-            x <- [0..z]
-            y <- [0..z]
-            case (3*x^2 + 2*y +1 == z) of 
-                True    -> return (x,y,z)
-                False   -> []
+solutions 
+    =   do
+        z <- [0..50]
+        x <- [0..z]
+        y <- [0..z]
+        case (3*x^2 + 2*y +1 == z) of 
+            True    -> return (x,y,z)
+            False   -> []
 
 solutions' 
-        =   [0..50] >>= \z ->
-            [0..z]  >>= \x ->
-            [0..z]  >>= \y ->
-            case (3*x^2 + 2*y +1 == z) of 
-                True    -> return (x,y,z)
-                False   -> []
+    =   [0..50] >>= \z ->
+        [0..z]  >>= \x ->
+        [0..z]  >>= \y ->
+        case (3*x^2 + 2*y +1 == z) of 
+            True    -> return (x,y,z)
+            False   -> []
             
 --A12.2
 
 f' :: Int -> Int -> Int -> Maybe Int
-f' x y z =  do
-            fn   <- safeSqrt x
-            fyz  <- safeDiv y z
-            fm   <- safeSqrt fyz
-            --fxyz <- safeDiv fn fm
-            --return fxyz
-            safeDiv fn fm
+f' x y z 
+    =   do
+        fn   <- safeSqrt x
+        fyz  <- safeDiv y z
+        fm   <- safeSqrt fyz
+        --fxyz <- safeDiv fn fm
+        --return fxyz
+        safeDiv fn fm
 
 --A12.3
 
@@ -41,13 +43,17 @@ tell s = (s,())
 
 addW, mulW :: Int -> Int -> Writer String Int
 
-addW x y =  do
-            w <- tell (show x ++ "+" ++ show y ++ "=" ++ show (x+y) ++"\n")
-            return x + y
+addW x y 
+    =   do
+        w <- tell (show x ++ "+" ++ show y 
+                    ++ "=" ++ show (x+y) ++"\n")
+        return x + y
 
-mulW x y =  do
-            w <- tell (show x ++ "+" ++ show y ++ "=" ++ show (x*y) ++"\n")
-            return x * y
+mulW x y 
+    =   do
+        w <- tell (show x ++ "+" ++ show y 
+                    ++ "=" ++ show (x*y) ++"\n")
+        return x * y
 
 progW :: Writer String Int
 progW = do
@@ -60,8 +66,7 @@ progW = do
 type BStore x = x -> Bool
 
 bexp2store :: BExp x -> Store x -> Bstore x -> Bool
-bexp2store bexp st 
+bexp2store bexp st bst
         = case bexp of
             True_   -> True
             False_  -> False
-            
