@@ -125,4 +125,11 @@ makeMatrixUpTo
 
 -- A6
 
-
+--arithParser :: Parser Int
+--arithParser 
+--    =   do
+--        token (char '(')
+--        operant <- (token (char '+')) +++ (token(char'*))
+--        list <- many (integer +++ (token arithParser))
+--        token (char ')')
+--        return (if operant == '+' then sum list else product list)
