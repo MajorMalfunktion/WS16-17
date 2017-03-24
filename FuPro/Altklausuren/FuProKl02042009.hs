@@ -25,7 +25,8 @@ breite :: Tree a -> Int
 breite (T _ ts) =   maxBreite ts
                     where 
                     maxBreite [] = 1
-                    maxBreite ts = max (length ts) (maxBreite $ ts >>= children)
+                    maxBreite ts = max (length ts) 
+                                    (maxBreite $ ts >>= children)
                         where
                         children (T _ ts) = ts
 
