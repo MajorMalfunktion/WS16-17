@@ -1,6 +1,8 @@
 {-# LANGUAGE LambdaCase #-}
 module FuProKl2014 where
 import Data.Maybe
+import DynProg
+import Data.Array
 
 --A1
 --1.
@@ -205,3 +207,12 @@ shortestHelp w m = case m of
     fastShort _      [] = False
     fastShort []     _  = True
     fastShort (a:as) (b:bs) = fastShort as bs
+
+--A6
+
+dynFac :: Int -> Int
+dynFac n = arr ! n
+    where
+    arr =  mkArray f (0,1000000)
+    f 0 = 1
+    f n = n * dynFac (n-1)
