@@ -69,7 +69,7 @@ gFib2 k n = arr ! n
                 f i |k <= 0     = 0
                     |n < 0      = 0
                     |n < k      = n
-                    |otherwise  = sum [arr ! (i - var) | var <- [1..k]]
+                    |otherwise  = sum [arr ! (i-var) | var <- [1..k]]
 
 --  A5
 

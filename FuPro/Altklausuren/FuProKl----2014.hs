@@ -84,22 +84,37 @@ data Exp    = Const Int
             | Sum Exp Exp
             | Product Exp Exp
 
-eval1 :: Exp -> (Char -> Maybe Int) -> Maybe Int
+eval1, eval2 :: Exp -> (Char -> Maybe Int) -> Maybe Int
 
 --1.
-eval1 exp f = case noNothing exp f of
-                True  -> myEval exp f
-                False -> Nothing
-    where
-    noNothing exp f = case exp of
-        (Var c)         -> if isJust (f c) then True else False
-        (Const i)       -> True
-        Negation e      -> noNothing e f
-        Sum e1 e2       -> noNothing e1 f && noNothing e2 f
-        Product e1 e2   -> noNothing e1 f && noNothing e2 f
 
-    myEval (Var c)         f = f c
-    myEval (Const i)       _ = Just i
-    myEval (Negation e)    _ = fmap (*(-1)) e
-    myEval (Sum e1 e2)     _ = fmap (+) e1 e2
-    myEval (Product e1 e2) _ = fmap (*) e1 e2
+eval1 exp f = case exp of
+    (Const i)       -> Just i
+    (Var c)         -> f c
+    (Negation e)    -> myMult (eval1 e f) (-1)
+    (Sum e1 e2)     -> (eval1 e1 f) >>= mySum (eval1 e2 f)
+    (Product e1 e2) -> (eval1 e1 f) >>= myMult (eval1 e2 f)
+    where
+    myMult may = case may of
+        Nothing  -> (\x -> Nothing)
+        (Just i) -> (\x -> Just $ x * i)
+    mySum may = case may of 
+        Nothing  -> (\x -> Nothing)
+        (Just i) -> (\x -> Just $ i + x) 
+
+--2.
+
+eval2 exp f = do
+    case exp of
+        (Const i)       -> Just i
+        (Var c)         -> f c
+        (Negation e)    -> myMult (eval1 e f) (-1)
+        (Sum e1 e2)     -> (eval1 e1 f) >>= mySum (eval1 e2 f)
+        (Product e1 e2) -> (eval1 e1 f) >>= myMult (eval1 e2 f)
+        where
+        myMult may = case may of
+            Nothing  -> (\x -> Nothing)
+            (Just i) -> (\x -> Just $ x * i)
+        mySum may = case may of 
+            Nothing  -> (\x -> Nothing)
+            (Just i) -> (\x -> Just $ i + x) 
