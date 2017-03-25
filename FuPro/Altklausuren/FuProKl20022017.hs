@@ -115,21 +115,19 @@ data Exp   = Con Int
             | Sum Exp Exp
             | Division Exp Exp
 
---evalM :: Exp -> Maybe Int
---evalM = \case
---    (Con i)          -> return i
---    (Sum e1 e2)      -> (evalM e1) >>= mySum (evalM e2)
---    (Division e1 e2) -> (evalM e1) >>= myDiv (evalM e2)
---    where
---    mySum mon n = case mon of
---        Nothing -> (\x -> Nothing)
---        m       -> return (n + fromJust m)
---    myDiv mon n = case mon of
---        Nothing -> (\x -> Nothing)
---        m       -> if (fromJust m) == 0 
---            then (\x -> Nothing)
---            else return (n `div` fromJust m)
-
+evalM :: Exp -> Maybe Int
+evalM = \case
+    (Con i)          -> return i
+    (Sum e1 e2)      -> do
+        exp1 <- evalM e1
+        exp2 <- evalM e2
+        return (exp1 * exp2)
+    (Division e1 e2) -> do
+        exp1 <- evalM e1
+        exp2 <- evalM e2
+        case exp2 == 0 of
+            True  -> Nothing
+            False -> return (exp2 `div` exp1)
 --A6
 
 xs = do
@@ -144,17 +142,17 @@ xs' =
 
 --A7
 
-type Stack a = Trans [Int] a
-
-push :: Int -> Stack ()
-
-pop :: Stack int 
-
-add :: Stack ()
-
-mul :: Stack ()
-
-prog :: Stack Int 
+--type Stack a = Trans [Int] a
+--
+--push :: Int -> Stack ()
+--
+--pop :: Stack int 
+--
+--add :: Stack ()
+--
+--mul :: Stack ()
+--
+--prog :: Stack Int 
 
 --A8 
 

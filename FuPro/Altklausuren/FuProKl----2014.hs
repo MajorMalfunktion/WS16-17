@@ -71,13 +71,14 @@ instance Functor Bintree where
 isBinSearchTree :: Ord a => Bintree a -> Bool
 isBinSearchTree = \case
     Empty        -> True
-    (Fork a l r) -> lSmallerR l r 
+    (Fork a l r) -> rightOrder a l r
                     && isBinSearchTree l 
                     && isBinSearchTree r
     where
-    lSmallerR Empty           Empty        = True
-    lSmallerR (Fork a _ _)    (Fork b _ _) = a < b
-    lSmallerR _               _            = True
+    rightOrder a Empty        Empty        = True
+    rightOrder a (Fork l _ _) (Fork r _ _) = l < a && a < r 
+    rightOrder a _            (Fork r _ _) = a < r
+    rightOrder a (Fork l _ _) _            = l < a
 
 --A4
 data Exp    = Const Int
