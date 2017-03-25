@@ -1,5 +1,8 @@
 {-# LANGUAGE LambdaCase #-}
 module FuProKl20022017 where
+import Data.Maybe
+import Data.Array
+import DynProg
 
 --A1
 
@@ -112,7 +115,53 @@ data Exp   = Con Int
             | Sum Exp Exp
             | Division Exp Exp
 
-evalM :: Exp -> Maybe Int
-evalM = \case
-    Con i     -> Just i
-    Sum e1 e2 -> 
+--evalM :: Exp -> Maybe Int
+--evalM = \case
+--    (Con i)          -> return i
+--    (Sum e1 e2)      -> (evalM e1) >>= mySum (evalM e2)
+--    (Division e1 e2) -> (evalM e1) >>= myDiv (evalM e2)
+--    where
+--    mySum mon n = case mon of
+--        Nothing -> (\x -> Nothing)
+--        m       -> return (n + fromJust m)
+--    myDiv mon n = case mon of
+--        Nothing -> (\x -> Nothing)
+--        m       -> if (fromJust m) == 0 
+--            then (\x -> Nothing)
+--            else return (n `div` fromJust m)
+
+--A6
+
+xs = do
+    x <- [1..10]
+    y <- [1..20]
+    if y>x then return (x*y) else []
+
+xs' = 
+    [1..10] >>= \x ->
+    [1..20] >>= \y ->
+    if y>x then return (x*y) else []
+
+--A7
+
+type Stack a = Trans [Int] a
+
+push :: Int -> Stack ()
+
+pop :: Stack int 
+
+add :: Stack ()
+
+mul :: Stack ()
+
+prog :: Stack Int 
+
+--A8 
+
+fDyn n = arr ! n
+    where
+    arr = mkArray f (0,10000000)
+    f 0 = 1
+    f 1 = 2
+    f 2 = 3
+    f n = fDyn (n-1) * fDyn (n-2) `div` fDyn (n-3)
