@@ -131,4 +131,9 @@ fDyn n = arr ! n
         f n = sum [fDyn i | i <- [0..(n-1)]]
 
 --A6
-
+--
+--inc :: Trans (String -> Int,Int)
+--
+--upd :: String -> Int -> Trans (String -> Int,Int)
+--
+--eval :: Statement -> Trans (String )
