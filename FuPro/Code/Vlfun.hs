@@ -1,6 +1,7 @@
 {-# LANGUAGE GADTs, LambdaCase, TypeSynonymInstances, FlexibleInstances #-}
 module Vlfun where
 import Control.Monad
+import Control.Applicative
 
 data Tree a     = V a 
                 | F a [Tree a]
@@ -416,8 +417,8 @@ join = (>>= id)
 -- Folien 163 -
 
 some, many :: MonadPlus m => m a -> m [a]
-some mon = do a <- mon; as <- many mon; return $ a:as
-many mon = mplus (some mon) (return [])
+some mon = do a <- mon; as <- Vlfun.many mon; return $ a:as
+many mon = mplus (Vlfun.some mon) (return [])
 
 msum :: MonadPlus m => [m a] -> m a
 msum = foldr mplus mzero
@@ -523,8 +524,8 @@ instance TreeC Tree where
     rootC = root
     subtreesC = subtrees
 
-depthfirst, breadthfirst :: 
-    (TreeC, tMonadPlus m) => (a -> Bool) -> t a-> m a
+--depthfirst, breadthfirst :: 
+--    (TreeC, tMonadPlus m) => (a -> Bool) -> t a-> m a
 
 -- Folien 188 - 
 
@@ -536,3 +537,36 @@ depthfirst, breadthfirst ::
 fib 0 = 1
 fib 1 = 1
 fib n = fib (n-1) + fib (n-2)
+
+----------------------------------------------------------------------
+
+--instance Functor ??? where
+--    fmap = liftM
+--    
+--instance Applicative ??? where
+--    pure = return 
+--    <*> = ap
+
+instance Applicative (Trans state) where
+    pure        = return  
+--    T f <*> T x =
+
+newtype Trans state a = T {runT :: state -> (a,state)}
+
+instance Functor (Trans state) where
+    fmap f (T h) = T $ (\(a,st) -> (f a,st)) . h
+
+data Cotrans state a = (:#) {fun :: state -> a, state :: state}
+
+instance Functor (Cotrans tate) where
+    fmap f (h:#st) = (f . h):#st
+
+instance Monad (Trans state) where
+    return a    = T $ \st -> (a,st)
+    T h >>= f   = T $ (\(a,st) -> runT (f a) st). h
+
+c2wr :: Cotrans state a -> (state -> a,state)
+c2wr (h:#st) = (h,st)
+
+wr2c :: (state -> a,state) -> Cotrans state a
+wr2c (h,st) = h:#st

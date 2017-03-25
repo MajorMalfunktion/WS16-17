@@ -1,14 +1,14 @@
 module UB13 where
---import Vlfun
+import Vlfun
 import Control.Monad
 
 --A13.1
 -- doesn't compile for whatever reason
-filtM :: MonadPlus m => (a -> Bool) -> [a] -> m a
-filtM _ []      = mzero
-filtM f (x:xs)  
-        | f x       = return mplus x $ filtM f xs
-        | otherwise = filtM f xs
+--filtM :: MonadPlus m => (a -> Bool) -> [a] -> m a
+--filtM _ []      = mzero
+--filtM f (x:xs)  
+--        | f x       = return mplus x $ filtM f xs
+--        | otherwise = filtM f xs
 
 --A13.2
 
