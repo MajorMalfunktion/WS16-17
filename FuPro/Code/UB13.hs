@@ -1,6 +1,8 @@
 module UB13 where
 import Vlfun
 import Control.Monad
+import GHC.Unicode
+import Data.Array
 
 --A13.1
 -- doesn't compile for whatever reason
@@ -38,3 +40,31 @@ pointDistance (x',y')
         x <- getX
         y <- getY
         return $ sqrt ((x' - x)^2 + (y' - y)^2)
+
+--3.
+prog :: PointMethod Double
+prog = do
+    x <- getX
+    y <- getY
+    pointSwap
+    dist <- pointDistance(x,y)
+    pointSwap
+    return dist
+
+--A13,3
+
+main :: IO ()
+main = do
+    raw <- getLine
+    writeFile "out.txt" (map toUpper raw)
+    where
+    
+
+--A13.4
+
+dynCatalan :: Int -> Int 
+dynCatalan n = arr ! n
+    where
+    arr = mkArray (0,n) catalan
+    catalan 0 = 1
+    catalan n = sum $ map (\i -> arr ! i * arr ! (n-1-i)) [0..n-1]

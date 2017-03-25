@@ -1,5 +1,6 @@
 {-# LANGUAGE GADTs, LambdaCase, TypeSynonymInstances, FlexibleInstances #-}
 module Vlfun where
+import Data.Array
 import Control.Monad
 import Control.Applicative
 
@@ -570,3 +571,6 @@ c2wr (h:#st) = (h,st)
 
 wr2c :: (state -> a,state) -> Cotrans state a
 wr2c (h,st) = h:#st
+
+mkArray :: Ix a => (a,a) -> (a -> b) -> Array a b
+mkArray bounds f = array bounds [(x,f x) | x <- range bounds]
