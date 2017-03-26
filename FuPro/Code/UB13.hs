@@ -14,20 +14,25 @@ import Data.Array
 
 --A13.2
 
+-- runT :: (Double,Double) -> (a,(Double,Double))
 type PointMethod = Trans (Double, Double)
 
+-- PointMethod Double :=
+-- runT :: (Double,Double) -> (Double,(Double,Double))
 getX, getY :: PointMethod Double
 getX = T $ \(x,y) -> (x,(x,y))
 getY = T $ \(x,y) -> (y,(x,y))
 
+-- PointMethod ():=
+-- runT :: (Double,Double) -> ((),(Double,Double))
 setX, setY :: Double -> PointMethod ()
 setX x = T $ \(_,y) -> ((),(x,y))
 setY y = T $ \(x,_) -> ((),(x,y))
 
+
 --1.
 pointSwap :: PointMethod ()
-pointSwap 
-    =   do
+pointSwap = do
         x <- getX
         y <- getY
         setX y

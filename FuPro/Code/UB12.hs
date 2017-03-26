@@ -43,17 +43,17 @@ tell s = (s,())
 
 addW, mulW :: Int -> Int -> Writer String Int
 
-addW x y 
-    =   do
-        w <- tell (show x ++ "+" ++ show y 
-                    ++ "=" ++ show (x+y) ++"\n")
-        return x + y
+addW x y = do
+    tell $ show x ++ "+" ++ show y ++ "=" ++ show r ++"\n"
+    return r
+    where
+    r = x+y
 
-mulW x y 
-    =   do
-        w <- tell (show x ++ "+" ++ show y 
-                    ++ "=" ++ show (x*y) ++"\n")
-        return x * y
+mulW x y = do
+    tell $ show x ++ "+" ++ show y ++ "=" ++ show r ++"\n"
+    return r
+    where
+    r = x*y
 
 progW :: Writer String Int
 progW = do
@@ -62,11 +62,11 @@ progW = do
         addW e2 5
 
 --A12.4
-
-type BStore x = x -> Bool
-
-bexp2store :: BExp x -> Store x -> Bstore x -> Bool
-bexp2store bexp st bst
-        = case bexp of
-            True_   -> True
-            False_  -> False
+--
+--type BStore x = x -> Bool
+--
+--bexp2store :: BExp x -> Store x -> Bstore x -> Bool
+--bexp2store bexp st bst
+--        = case bexp of
+--            True_   -> True
+--            False_  -> False
