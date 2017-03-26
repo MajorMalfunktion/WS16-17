@@ -74,10 +74,10 @@ data Tree a = Tree a [Tree a]
             deriving (Show)
 
 instance (Eq a) => Eq (Tree a) where
-    Tree a [] == Tree b [] = a == b
-    Tree a _  == Tree b [] = False
-    Tree a [] == Tree b _  = False
-    Tree a as == Tree b bs = a == b && as == bs
+    Tree a []   == Tree b []    = a == b
+    Tree a _    == Tree b []    = False
+    Tree a []   == Tree b _     = False
+    Tree a as   == Tree b bs    = a == b && and $ zipWith (==) as bs
 
 -- Testfaelle
 tree1 = Tree 5 [Tree 6 [Tree 8 [], Tree 9 []]]
