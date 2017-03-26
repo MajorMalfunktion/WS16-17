@@ -50,11 +50,10 @@ elem' trg (a:as)
 filter' :: Eq a => (a -> Bool) -> [a] -> [a]
 filter' f [] = []
 filter' f (a:as)
-    | (f a)     = filter' f as
+    | (f a)     = a : filter' f as
     | otherwise = filter' f as
 
 isPrefixOf' :: Eq a => [a] -> [a] -> Bool
-isPrefixOf' [] [] = True
 isPrefixOf' [] _  = True
 isPrefixOf' _  [] = False
 isPrefixOf' (a:as) (b:bs)
@@ -88,10 +87,11 @@ treeAnd = and . allTrees
 
 row :: Int -> Tree a -> [a]
 row n (V a ts)
-    |n <= 0     = []
+    |n < 0      = []
+    |n == 0     = [a]
     |otherwise  = case ts of
-        [] -> [a] 
-        t  -> [a] ++ concat (map (row (n-1)) t)
+        [] -> [] 
+        t  -> concat (map (row (n-1)) t)
 
 --A4
 
@@ -142,17 +142,22 @@ xs' =
 
 --A7
 
---type Stack a = Trans [Int] a
---
---push :: Int -> Stack ()
---
---pop :: Stack int 
---
---add :: Stack ()
---
---mul :: Stack ()
---
---prog :: Stack Int 
+type Stack a = Trans [Int] a
+
+push :: Int -> Stack ()
+push i = T $ \x -> ((),i:x)
+
+pop :: Stack Int 
+pop = T $ \(x:xs) -> (x,xs)
+
+addW :: Stack ()
+addW = T $ \(x:y:xs) -> ((),((x+y):xs))
+
+mul :: Stack ()
+mul = T $ \(x:y:xs) -> ((),((x*y):xs))
+
+prog :: Stack Int 
+prog = T $ \x -> (((2+3*2) + 5),x)
 
 --A8 
 
@@ -162,4 +167,4 @@ fDyn n = arr ! n
     f 0 = 1
     f 1 = 2
     f 2 = 3
-    f n = fDyn (n-1) * fDyn (n-2) `div` fDyn (n-3)
+    f n = arr ! (n-1) * arr ! (n-2) `div` arr ! (n-3)
