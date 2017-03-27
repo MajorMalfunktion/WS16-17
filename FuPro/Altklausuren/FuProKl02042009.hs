@@ -1,7 +1,7 @@
 module Klausur02042009 where
 import Data.Array 
 --  A1.1
---      foldr (\x (y,z) -> (y*z + x, z+x))(0,0) [1,1,2]
+a11 = foldr (\x (y,z) -> (y*z + x, z+x))(0,0) [1,1,2]
 --  =   foldr (\x (y,z) -> (y*z + x, z+x))(2,2) [1,1]
 --  =   foldr (\x (y,z) -> (y*z + x, z+x))(5,3) [1]
 --  =   (16,4)

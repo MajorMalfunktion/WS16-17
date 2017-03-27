@@ -116,8 +116,18 @@ evalDo exp = do
         (Just i) -> (\x -> Just $ x `div` i)
     
 
---xs :: [Int]
---xs = [x+y | x <- [1,5], y <- [10,20]]
+xs,xs1, xs2 :: [Int]
+xs = [x+y | x <- [1,5], y <- [10,20]]
+
+xs1 = do
+    x <- [1,5]
+    y <- [10,20]
+    return (x+y)
+
+xs2 = 
+    [1,5] >>= \x ->
+    [10,20] >>= \y -> 
+    return (x+y)
 
 --A5
 
@@ -128,11 +138,11 @@ fDyn n = arr ! n
         where
         f 0 = 1
         f 1 = 3
-        f n = sum [fDyn i | i <- [0..(n-1)]]
+        f n = sum [arr ! i| i <- [0..(n-1)]]
 
 --A6
 --
---inc :: Trans (String -> Int,Int)
+--inc :: Trans (String -> Int,Int) ()
 --
 --upd :: String -> Int -> Trans (String -> Int,Int)
 --

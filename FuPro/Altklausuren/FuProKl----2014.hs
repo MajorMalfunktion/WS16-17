@@ -200,13 +200,11 @@ shortestHelp w m = case m of
         let rW = shortestHelp (RightD:w) r
         if isShorter lW rW then lW else rW
     where
-    isShorter Nothing    Nothing    = True
     isShorter _          Nothing    = True
     isShorter Nothing    _          = False
     isShorter (Just(as)) (Just(bs)) = fastShort as bs
-    fastShort []     [] = True
-    fastShort _      [] = False
     fastShort []     _  = True
+    fastShort _      [] = False
     fastShort (a:as) (b:bs) = fastShort as bs
 
 --A6
